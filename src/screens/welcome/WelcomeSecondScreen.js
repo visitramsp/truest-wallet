@@ -5,7 +5,9 @@ import CustomButton from '../../components/CustomButton';
 import styles from './Welcome.Styles';
 import {mediaFile} from '../../assets';
 import { useNavigation } from '@react-navigation/native';
-export default function WelcomeScreen() {
+import { height } from '../../theme/Matrics';
+import { Colors } from '../../theme';
+export default function WelcomeSecondScreen() {
   const navigation=useNavigation()
 
 
@@ -13,14 +15,15 @@ export default function WelcomeScreen() {
   return (
     <MainLayout>
       <View style={styles.container}>
-        <View style={styles.gifView}>
+        <View style={[styles.gifView,{height:height-250}]}>
           <Image
             source={mediaFile.welcomeGIF}
             style={styles.gif}
           />
         </View>
         <View>
-          <CustomButton onPress={()=>navigation.navigate("welcome-second-screen")} title="Get Started" />
+          <CustomButton onPress={()=>navigation.navigate("choose-option")} title="Create new wallet" />
+          <CustomButton style={{marginTop:15,backgroundColor:Colors.gray60}} btnColor={{color:Colors.black80}} onPress={()=>navigation.navigate("choose-option")} title="I already have a wallet" />
           <Text style={styles.mainTitle}>
             By Trapping "Get Started" you agree and consent to our
             <Text style={styles.termsText}>{ " "}Terms of Service {" "}</Text>

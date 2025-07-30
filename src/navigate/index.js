@@ -15,6 +15,8 @@ import Cart from '../screens/cart/Cart';
 import {Colors} from '../theme';
 import Login from '../screens/auth/login';
 import WelcomeScreen from '../screens/welcome/WelcomeScreen';
+import ChooseOption from '../screens/welcome/ChooseOption';
+import WelcomeSecondScreen from '../screens/welcome/WelcomeSecondScreen';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -73,6 +75,8 @@ export default function Index() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="welcome" component={WelcomeScreen} />
+        <Stack.Screen name="welcome-second-screen" component={WelcomeSecondScreen} />
+        <Stack.Screen name="choose-option" component={ChooseOption} />
         <Stack.Screen name="signup" component={Signup} />
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="forget-password" component={ForgetPassword} />
