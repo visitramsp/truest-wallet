@@ -16,8 +16,13 @@ export default function WelcomeScreen() {
           />
         </View>
         <View>
-          <Text style={{color: 'red'}}>Welcome Screen</Text>
           <CustomButton title="Get Started" />
+          <Text style={{color: 'black'}}>
+            By Trapping "Get Started" you agree and consent to our
+            <Text style={{color: 'red'}}>Terms of Service</Text>
+            and
+            <Text style={{color: 'red'}}>Privacy Policy</Text>
+          </Text>
         </View>
       </View>
     </MainLayout>

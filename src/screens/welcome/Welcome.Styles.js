@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   gif: {
     width: 500,
-    height: 500,
+    // height: 500,
   },
 });
 
