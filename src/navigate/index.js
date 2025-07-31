@@ -19,6 +19,9 @@ import ChooseOption from '../screens/welcome/ChooseOption';
 import WelcomeSecondScreen from '../screens/welcome/WelcomeSecondScreen';
 import QRScanner from '../components/QRScanner';
 import OtpScreen from '../screens/welcome/OtpScreen';
+import Setting from '../screens/setting.js/Setting';
+import RecoveryPhraseScreen from '../screens/welcome/RecoveryPhraseScreen';
+import ConfirmRecoveryScreen from '../screens/welcome/ConfirmRecoveryScreen';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -35,39 +38,41 @@ function BottomNavigation() {
           else if (route.name === 'Bag') iconName = 'shopping-bag';
           else if (route.name === 'Favorites') iconName = 'heart';
           else if (route.name === 'Profile') iconName = 'user';
+          else if (route.name === 'Setting') iconName = 'settings';
 
-          return route.name === 'Home' ? (
+          return route.name === 'Home' || route.name === 'Setting' ? (
             <MaterialIcons
               name={iconName}
               size={30}
-              color={focused ? Colors.red100 : Colors.gray100}
+              color={focused ? Colors.blue100 : Colors.gray100}
             />
           ) : (
             <Icon
               name={iconName}
               size={24}
-              color={focused ? Colors.red100 : Colors.gray100}
+              color={focused ? Colors.blue100 : Colors.gray100}
             />
           );
         },
-        tabBarActiveTintColor: Colors.red100,
+        tabBarActiveTintColor: Colors.blue100,
         tabBarInactiveTintColor: Colors.gray100,
         tabBarLabelStyle: {fontSize: 12},
         tabBarStyle: {
           height: 70,
           paddingBottom: 10,
           paddingTop: 5,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
+          // borderTopLeftRadius: 20,
+          // borderTopRightRadius: 20,
           position: 'absolute',
           backgroundColor: Colors.white80,
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Shop" component={Shop} />
+      {/* <Tab.Screen name="Shop" component={Shop} />
       <Tab.Screen name="Bag" component={Cart} />
       <Tab.Screen name="Favorites" component={Favorites} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Profile" component={Profile} /> */}
+      <Tab.Screen name="Setting" component={Setting} />
     </Tab.Navigator>
   );
 }
@@ -84,6 +89,8 @@ export default function Index() {
         <Stack.Screen name="choose-option" component={ChooseOption} />
         <Stack.Screen name="signup" component={Signup} />
         <Stack.Screen name="qrs-canner" component={QRScanner} />
+        <Stack.Screen name="recovery-phase" component={RecoveryPhraseScreen} />
+        <Stack.Screen name="confirm-recovery-phase" component={ConfirmRecoveryScreen} />
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="otp-screen" component={OtpScreen} />
         <Stack.Screen name="forget-password" component={ForgetPassword} />

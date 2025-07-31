@@ -5,9 +5,11 @@ import OTPTextInput from 'react-native-otp-textinput';
 import {Colors} from '../../theme';
 import {OtpSchema} from '../../schemas/OtpSchema';
 import styles from './Welcome.Styles';
+import { useNavigation } from '@react-navigation/native';
 export default function OtpScreen() {
   const [toggleBtn, setToggleBtn] = useState(false);
   const otpInputRef = useRef(null);
+  const navigation=useNavigation()
 
   //   useEffect(() => {
   //     if (otpInputRef?.current) {
@@ -25,7 +27,7 @@ export default function OtpScreen() {
     onSubmit: async (values, action) => {
       setToggleBtn(true);
       console.log(values, 'values');
-
+      navigation.navigate("recovery-phase")
       if (isPhone) {
         // onPressPhoneOtpVerify(values?.otp);
       } else {
@@ -70,11 +72,7 @@ export default function OtpScreen() {
           onBlur={handleBlur('otp')}
           secureTextEntry
           textInputProps={{
-            secureTextEntry: true, // or true if you want hidden input
-            importantForAutofill: 'no',
-            autoComplete: 'off',
-            autoCorrect: false,
-            autoCapitalize: 'none',
+            secureTextEntry: true, 
           }}
         />
         {errors?.otp && touched?.otp && (

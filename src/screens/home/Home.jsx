@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,13 +7,38 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  Pressable
+  Pressable,
+  TouchableOpacity,
+  Animated
 } from 'react-native';
 import styles from './Home.Styles';
-import { ApplicationStyle } from '../../theme';
+import { ApplicationStyle, Colors, verticalScale } from '../../theme';
 import ProductCard from '../../components/productCard';
+import CointList from './components/CointList';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Octicons from 'react-native-vector-icons/Octicons';
+import Icon from 'react-native-vector-icons/Feather';
+
+const buttons = [
+  { label: 'Send', icon: 'arrow-up-right', bg: '#2c2c2e' },
+  { label: 'Swap', icon: 'repeat', bg: '#2c2c2e' },
+  { label: 'Fund', icon: 'zap', bg: '#00ff8b' },
+  { label: 'Sell', icon: 'home', bg: '#2c2c2e' },
+];
 
 export default function HomeScreen() {
+  const [currentTab, setCurrentTab] = useState(0)
+
+
+  const handleTabPress = (index) => {
+    setCurrentTab(index);
+    Animated.timing(translateX, {
+      toValue: index * tabWidth,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
     <>
       <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
@@ -22,29 +47,69 @@ export default function HomeScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}>
-          <ImageBackground
-            source={{ uri: 'https://cdn.pixabay.com/photo/2024/04/29/04/21/tshirt-8726716_1280.jpg' }}
-            style={styles.imageBackground}
-            resizeMode="cover"
-          >
-            <View style={styles.content}>
-              <Text style={styles.text}>Fashion Sale</Text>
-              <Pressable style={styles.checkButton}>
-                <Text style={styles.checkText}>Check</Text>
-              </Pressable>
-            </View>
-          </ImageBackground>
+          <View style={styles.topContainer}>
+            <MaterialIcons
+              name={"qr-code-scanner"}
+              size={25}
+              color={Colors.black100}
+            />
+            <Text style={styles.mainWalletText}>Main Wallet</Text>
+            <Octicons
+              name={"filter"}
+              size={20}
+              color={Colors.black100}
+            />
 
-          <View style={styles.boxContainer}>
-            <View style={[ApplicationStyle.rowAlignCenterJustifyBetween, { paddingBottom: 10 }]}>
-              <View>
-                <Text style={styles.newText}>New</Text>
-                <Text style={styles.newSubText}>You’ve never seen it before!</Text>
-              </View>
-              <Text style={styles.viewAllText}>View All</Text>
-            </View>
-            <ProductCard />
           </View>
+
+
+
+          <View style={styles.containerMiddle}>
+
+            <View style={styles.balanceContainer}>
+              <Text style={styles.balance}>$0.00</Text>
+              <Text style={styles.subBalance}>$0.00 (0%)</Text>
+            </View>
+
+
+            <View style={styles.row}>
+              {buttons.map((btn, index) => (
+                <TouchableOpacity key={index} style={styles.buttonContainer}>
+                  <View style={[styles.iconWrapper, { backgroundColor: btn.bg }]}>
+                    <Icon
+                      name={btn.icon}
+                      size={22}
+                      color={btn.label === 'Fund' ? '#000' : '#fff'}
+                    />
+                  </View>
+                  <Text style={styles.label}>{btn.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+
+
+
+
+
+
+
+
+
+          <View style={styles.tabContainer}>
+            {
+              ["Coins", "Activity"].map((row, index) =>
+                <TouchableOpacity onPress={() => handleTabPress(index)}>
+                  <View key={index} style={[styles.tabView, currentTab === index && styles.activeTab]}>
+                    <Text style={[styles.tabText, currentTab === index && styles.activeText]}>{row}</Text>
+                  </View>
+                </TouchableOpacity>
+              )
+            }
+          </View>
+          {
+            currentTab === 0 ? <CointList /> : <Text style={{ paddingHorizontal: verticalScale(20), fontSize: 20, fontWeight: "bold", textAlign: "center", color: "red" }}>No Activity</Text>
+          }
         </ScrollView>
       </SafeAreaView>
     </>

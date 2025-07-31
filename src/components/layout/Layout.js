@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
+import { ImageBackground, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../../theme';
 
@@ -8,6 +8,7 @@ const MainLayout = ({ children, style, scrollable = true }) => {
   return (
     // <ImageBackground source={AppIcon.universalUI} style={[styles.safeArea]}>
       <SafeAreaView style={styles.safeArea}>
+        <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
         {scrollable ? (
           <ScrollView
             showsVerticalScrollIndicator={false}

@@ -7,7 +7,7 @@ import {mediaFile} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
 import {height} from '../../theme/Matrics';
 import {Colors} from '../../theme';
-import WebView from 'react-native-webview';
+// import WebView from 'react-native-webview';
 export default function WelcomeSecondScreen() {
   const navigation = useNavigation();
 
@@ -16,11 +16,11 @@ export default function WelcomeSecondScreen() {
       <View style={styles.container}>
         <View style={[styles.gifView, {}]}>
           <View style={{height: 200}} />
-          <WebView
+          {/* <WebView
             originWhitelist={['*']}
             source={mediaFile.welcomeGIF}
             style={styles.gif}
-          />
+          /> */}
         </View>
         <View>
           <CustomButton

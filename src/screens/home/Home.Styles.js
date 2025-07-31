@@ -1,75 +1,98 @@
 import { StyleSheet } from "react-native";
-import { Colors, Fonts, verticalScale } from "../../theme";
+import { Colors, Fonts, horizontalScale, verticalScale, width } from "../../theme";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.bgColor,
+    paddingTop: 30
   },
   scrollContent: {
     paddingBottom: verticalScale(100),
   },
-  imageBackground: {
-    width: '100%',
-    height: 500,
-    justifyContent: 'flex-end',
+  topContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: verticalScale(20),
+    marginBottom: verticalScale(30)
   },
-  content: {
-    padding: 10,
-    paddingBottom: verticalScale(25),
-    backgroundColor: 'rgba(0, 0, 0, 0.4)', // Optional dark overlay
-  },
-  text: {
-    fontSize: Fonts.size.h4,
-    // width: '40%',
-    fontWeight: 'bold',
-    color: Colors.white80,
-  },
-  checkButton:{
-    backgroundColor:Colors.red100,
-    padding: 10,
-    borderRadius: 20,
-    width: '40%',
-    marginTop:verticalScale(10)
-  },
-  checkText: {
-    fontSize: Fonts.size.tiny, 
-    textAlign: 'center',
+  mainWalletText: {
+    fontSize: Fonts.size.regularLarge,
     fontFamily: Fonts.type.montserratRegular,
-    fontWeight: Fonts.Weight.low,
-    color: Colors.white80,   
-  },
-  boxContainer: {
-    paddingHorizontal: 16,
-    paddingTop: verticalScale(16),
-  },
-  box: {
-    backgroundColor: '#f0f0f0',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 12,
-  },
-  boxText: {
-    fontSize: 16,
-    color: '#333',
-  },
-  newText: {
-    fontSize: Fonts.size.h6,
-    fontFamily: Fonts.type.montserratBold,
     fontWeight: Fonts.Weight.bold,
     color: Colors.black100,
   },
-  newSubText: {
-    fontSize: Fonts.size.tiny,
-    fontFamily: Fonts.type.montserratRegular,
-    fontWeight: Fonts.Weight.low,
-    color: Colors.gray100,
+
+  containerMiddle: {
+    paddingBottom: 20,
+    alignItems: 'center',
   },
-  viewAllText: {
-    fontSize: Fonts.size.tiny,
+  balanceContainer: {
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  balance: {
+    fontSize: Fonts.size.h1,
+    fontWeight: '700',
+    color: Colors.blue100,
+  },
+  subBalance: {
+    fontSize: 14,
+    color: '#999',
+    marginTop: 4,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '90%',
+  },
+  buttonContainer: {
+    alignItems: 'center',
+  },
+  iconWrapper: {
+    width: 50,
+    height: 50,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  label: {
+    color: Colors.gray100,
+    fontSize: 12,
+  },
+  tabContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    borderBottomWidth: 1,
+    paddingBottom: verticalScale(5),
+    borderColor: Colors.gray50,
+    position: "relative",
+    marginBottom: verticalScale(20)
+  },
+  tabView: {
+    paddingBottom: verticalScale(5),
+
+    position: "relative",
+    top: 5,
+    width: width - horizontalScale(220),
+
+
+  },
+  activeTab: {
+    borderBottomWidth: 1,
+    borderColor: Colors.blue100,
+  },
+  tabText: {
+    fontSize: Fonts.size.uprSemi,
     fontFamily: Fonts.type.montserratRegular,
-    fontWeight: Fonts.Weight.low,
-    color: Colors.black100,
+    fontWeight: Fonts.Weight.bold,
+    color: Colors.gray90,
+    textAlign: "center",
+  },
+  activeText: {
+    color: Colors.blue100
   }
 });
 

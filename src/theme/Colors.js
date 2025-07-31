@@ -15,6 +15,7 @@ const Colors = {
   // bgColor: '#F9F9F9',
   skyBlue100: '#3B5998',
   blue100: '#3470FA',
+  blue80: '#64b5f6',
   blue10: '#E3E3FA',
 };
 

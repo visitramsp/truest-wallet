@@ -1,0 +1,121 @@
+import React from 'react';
+import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
+import { mediaFile } from '../../../assets';
+import { Colors, Fonts } from '../../../theme';
+
+const coinData = [
+  {
+    id: '1',
+    name: 'Ethereum',
+    icon: mediaFile.etherium,
+    percentChange: '+1.10%',
+    earnRate: '2.4%',
+    balance: '0',
+    value: '$0.00',
+  },
+  {
+    id: '2',
+    name: 'Bitcoin',
+    icon:mediaFile.bnb, 
+    percentChange: '+0.85%',
+    earnRate: '1.8%',
+    balance: '0.05',
+    value: '$3,000.00',
+  },
+  {
+    id: '3',
+    name: 'Polygon',
+    icon: mediaFile.polygon,
+    percentChange: '-0.24%',
+    earnRate: '4.5%',
+    balance: '1.3',
+    value: '$280.10',
+  },
+];
+
+const CoinCard = ({ coin }) => (
+  <View style={styles.card}>
+    <View style={styles.left}>
+      <Image source={coin.icon} style={styles.icon} />
+      <View>
+        <Text style={styles.name}>{coin.name}</Text>
+        <View style={styles.row}>
+          <Text style={[styles.change, { color: coin.percentChange.includes('-') ? 'red' : 'green' }]}>
+            {coin.percentChange}
+          </Text>
+          <Text style={styles.earn}> • Earn {coin.earnRate}</Text>
+        </View>
+      </View>
+    </View>
+    <View style={styles.right}>
+      <Text style={styles.balance}>{coin.balance} {coin.name === 'Ethereum' ? 'ETH' : ''}</Text>
+      <Text style={styles.value}>{coin.value}</Text>
+    </View>
+  </View>
+);
+
+const CointList = () => {
+  return (
+    <FlatList
+      data={coinData}
+      keyExtractor={item => item.id}
+      renderItem={({ item }) => <CoinCard coin={item}
+    //   contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 20, }}
+      
+      />}
+    />
+  );
+};
+
+export default CointList;
+
+const styles = StyleSheet.create({
+  card: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: Colors.gray50,
+    padding: 16,
+    marginVertical: 4,
+    marginHorizontal: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    borderRadius:10
+  },
+  left: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  right: {
+    alignItems: 'flex-end',
+  },
+  icon: {
+    width: 32,
+    height: 32,
+    marginRight: 10,
+  },
+  name: {
+    color: Colors.black100,
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  change: {
+    fontSize: 12,
+  },
+  earn: {
+    fontSize: 12,
+    color: Colors.blue80,
+  },
+  balance: {
+    color:Colors.black100,
+    fontSize: 14,
+    fontWeight: Fonts.Weight.medium,
+  },
+  value: {
+    color: '#000',
+    fontSize: 12,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});

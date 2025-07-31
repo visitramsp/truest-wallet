@@ -4,7 +4,7 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './Welcome.Styles';
 import {mediaFile} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
-import WebView from 'react-native-webview';
+// import WebView from 'react-native-webview';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Colors} from '../../theme';
@@ -28,11 +28,11 @@ export default function ChooseOption() {
     <MainLayout>
       <View style={styles.container}>
         <View style={styles.gifView}>
-          <WebView
+          {/* <WebView
             originWhitelist={['*']}
             source={mediaFile.welcomeGIF}
             style={styles.gif}
-          />
+          /> */}
         </View>
         <View>
           <Text style={styles.mainTitleDesc}>
