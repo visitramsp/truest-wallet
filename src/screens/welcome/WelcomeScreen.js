@@ -6,7 +6,7 @@ import styles from './Welcome.Styles';
 import {mediaFile} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
 import WebView from 'react-native-webview';
-import LottieView from 'lottie-react-native';
+// import LottieView from 'lottie-react-native';
 // import CubeCard from '../../components/CubeCard';
 export default function WelcomeScreen() {
   const navigation = useNavigation();
@@ -20,16 +20,16 @@ export default function WelcomeScreen() {
             style={styles.gif}
           /> */}
           <View style={{height: 200}} />
-          {/* <WebView
+          <WebView
             originWhitelist={['*']}
             source={mediaFile.welcomeGIF}
             style={styles.gif}
-          /> */}
-          <LottieView
+          />
+          {/* <LottieView
             source={require('../../assets/startup.json')}
             autoPlay
             loop
-          />
+          /> */}
         </View>
         <View>
           <CustomButton
