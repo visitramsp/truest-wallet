@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     padding: 16,
     flexDirection: 'column',
     justifyContent: 'space-between',
+    gap: verticalScale(50),
   },
   gifView: {
     flex: 1,
@@ -83,6 +84,40 @@ const styles = StyleSheet.create({
     fontWeight: Fonts.Weight.medium,
     textAlign: 'center',
     paddingBottom: verticalScale(20),
+  },
+  otpView: {marginTop: verticalScale(30)},
+  resendView: {
+    paddingVertical: verticalScale(30),
+    justifyContent: 'center',
+  },
+
+  inputOTP: {
+    fontSize: 24,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderBottomWidth: 1,
+    width: horizontalScale(42),
+    height: verticalScale(52),
+    textAlign: 'center',
+    marginHorizontal: horizontalScale(6),
+  },
+  errorText: {
+    color: Colors.red100,
+    paddingLeft: horizontalScale(5),
+    fontSize: Fonts.size.medium,
+    textAlign: 'center',
+    paddingTop: verticalScale(5),
+  },
+  otpTextError: {
+    color: Colors.red,
+    paddingTop: horizontalScale(10),
+    fontSize: Fonts.size.sminy,
+    alignSelf: 'center',
+  },
+  passcodeText: {
+    color: Colors.black80,
+    fontSize: Fonts.size.f20,
+    fontWeight: Fonts.Weight.medium,
   },
 });
 

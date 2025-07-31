@@ -18,6 +18,7 @@ import WelcomeScreen from '../screens/welcome/WelcomeScreen';
 import ChooseOption from '../screens/welcome/ChooseOption';
 import WelcomeSecondScreen from '../screens/welcome/WelcomeSecondScreen';
 import QRScanner from '../components/QRScanner';
+import OtpScreen from '../screens/welcome/OtpScreen';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -84,6 +85,7 @@ export default function Index() {
         <Stack.Screen name="signup" component={Signup} />
         <Stack.Screen name="qrs-canner" component={QRScanner} />
         <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="otp-screen" component={OtpScreen} />
         <Stack.Screen name="forget-password" component={ForgetPassword} />
         <Stack.Screen name="bottom-navigation" component={BottomNavigation} />
       </Stack.Navigator>

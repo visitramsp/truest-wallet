@@ -1,21 +1,24 @@
 import React from 'react';
 import MainLayout from '../../components/layout/Layout';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
-import CustomButton from '../../components/CustomButton';
+import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './Welcome.Styles';
 import {mediaFile} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
+import WebView from 'react-native-webview';
+import Feather from 'react-native-vector-icons/Feather';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Colors} from '../../theme';
 export default function ChooseOption() {
   const navigation = useNavigation();
   const btnList = [
     {
-      icons: '+',
+      icons: <Ionicons name={'add-sharp'} size={20} color={Colors.blue100} />,
       btnName: 'Create new wallet',
       desc: 'Generate a new multi-chain wallet',
       linkURL: 'bottom-navigation',
     },
     {
-      icons: 'A',
+      icons: <Feather name={'arrow-down'} size={20} color={Colors.blue100} />,
       btnName: 'Add existing wallet',
       desc: 'Import, restore or view-only',
       linkURL: 'qrs-canner',
@@ -25,7 +28,11 @@ export default function ChooseOption() {
     <MainLayout>
       <View style={styles.container}>
         <View style={styles.gifView}>
-          <Image source={mediaFile.welcomeGIF} style={styles.topIcons} />
+          <WebView
+            originWhitelist={['*']}
+            source={mediaFile.welcomeGIF}
+            style={styles.gif}
+          />
         </View>
         <View>
           <Text style={styles.mainTitleDesc}>
@@ -39,7 +46,10 @@ export default function ChooseOption() {
               key={index}>
               <View style={styles.buttonContainer}>
                 <View style={styles.iconsView}>
-                  <Text style={styles.iconsText}>{row.icons}</Text>
+                  {/* <Text style={styles.iconsText}> */}
+                  {row.icons}
+                  {/* </Text> */}
+                  {/* <Icon name={row.icons} size={24} color="#555" /> */}
                 </View>
                 <View>
                   <Text style={styles.btnName}>{row.btnName}</Text>
