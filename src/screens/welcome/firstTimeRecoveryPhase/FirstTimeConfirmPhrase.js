@@ -7,10 +7,10 @@ import {
   Dimensions,
   TextInput,
 } from 'react-native';
-import {Colors, Fonts} from '../../theme';
-import CustomButton from '../../components/CustomButton';
-import {height} from '../../theme/Matrics';
-import MainLayout from '../../components/layout/Layout';
+import {Colors, Fonts} from '../../../theme';
+import CustomButton from '../../../components/CustomButton';
+import {height} from '../../../theme/Matrics';
+import MainLayout from '../../../components/layout/Layout';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
@@ -37,7 +37,7 @@ const confirmationArr = [
   {key: 10, value: 'pudding', isActive: false},
 ];
 
-const ConfirmRecoveryScreen = () => {
+const FirstTimeConfirmPhrase = () => {
   const [fieldData, setFieldData] = useState(fields);
   const [confirmData, setConfirmData] = useState(confirmationArr);
   const [isView, setIsView] = useState(false);
@@ -185,7 +185,7 @@ const ConfirmRecoveryScreen = () => {
   );
 };
 
-export default ConfirmRecoveryScreen;
+export default FirstTimeConfirmPhrase;
 
 const styles = StyleSheet.create({
   container1: {

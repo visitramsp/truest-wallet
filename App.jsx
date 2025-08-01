@@ -24,6 +24,9 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import Index from './src/navigate';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './src/store/Store';
 // import Index from './src/navigate';
 
 
@@ -48,29 +51,11 @@ function App() {
 
   return (
    <SafeAreaProvider>
-      {/* <View style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        style={backgroundStyle}>
-        <View style={{paddingRight: safePadding}}>
-          <Header/>
-        </View>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            paddingHorizontal: safePadding,
-            paddingBottom: safePadding,
-          }}>
-         
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </View> */}
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
        <Index /> 
-      {/* <Login /> */}
+      </PersistGate>
+      </Provider>
     </SafeAreaProvider>
   );
 }

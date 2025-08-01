@@ -16,12 +16,14 @@ export default function ChooseOption() {
       btnName: 'Create new wallet',
       desc: 'Generate a new multi-chain wallet',
       linkURL: 'bottom-navigation',
+      isFirst: true,
     },
     {
       icons: <Feather name={'arrow-down'} size={20} color={Colors.blue100} />,
       btnName: 'Add existing wallet',
       desc: 'Import, restore or view-only',
       linkURL: 'qrs-canner',
+      isFirst: false,
     },
   ];
   return (
@@ -42,15 +44,12 @@ export default function ChooseOption() {
         <View style={styles.outerContainer}>
           {btnList.map((row, index) => (
             <TouchableOpacity
-              onPress={() => navigation.navigate(row.linkURL)}
+              onPress={() =>
+                navigation.navigate(row.linkURL, {isFirst: row.isFirst})
+              }
               key={index}>
               <View style={styles.buttonContainer}>
-                <View style={styles.iconsView}>
-                  {/* <Text style={styles.iconsText}> */}
-                  {row.icons}
-                  {/* </Text> */}
-                  {/* <Icon name={row.icons} size={24} color="#555" /> */}
-                </View>
+                <View style={styles.iconsView}>{row.icons}</View>
                 <View>
                   <Text style={styles.btnName}>{row.btnName}</Text>
                   <Text style={styles.iconsDesc}>{row.desc}</Text>

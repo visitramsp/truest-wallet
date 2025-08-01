@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   gif: {
-    width: width,
-    height: height - 550,
+    width: width + 80,
+    height: height - 500,
   },
   mainTitle: {
     textAlign: 'center',

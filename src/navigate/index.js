@@ -22,6 +22,9 @@ import OtpScreen from '../screens/welcome/OtpScreen';
 import Setting from '../screens/setting.js/Setting';
 import RecoveryPhraseScreen from '../screens/welcome/RecoveryPhraseScreen';
 import ConfirmRecoveryScreen from '../screens/welcome/ConfirmRecoveryScreen';
+import firstTimeRecoveryPhase from '../screens/welcome/firstTimeRecoveryPhase/FirstTimeRecoveryPhrase';
+import FirstTimeConfirmPhrase from '../screens/welcome/firstTimeRecoveryPhase/FirstTimeConfirmPhrase';
+import Send from '../screens/send/Send';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -89,12 +92,26 @@ export default function Index() {
         <Stack.Screen name="choose-option" component={ChooseOption} />
         <Stack.Screen name="signup" component={Signup} />
         <Stack.Screen name="qrs-canner" component={QRScanner} />
+        <Stack.Screen
+          name="first-time-recovery-phase"
+          component={firstTimeRecoveryPhase}
+        />
+        <Stack.Screen
+          name="confirm-first-recovery-phase"
+          component={FirstTimeConfirmPhrase}
+        />
         <Stack.Screen name="recovery-phase" component={RecoveryPhraseScreen} />
-        <Stack.Screen name="confirm-recovery-phase" component={ConfirmRecoveryScreen} />
+        <Stack.Screen
+          name="confirm-recovery-phase"
+          component={ConfirmRecoveryScreen}
+        />
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="otp-screen" component={OtpScreen} />
         <Stack.Screen name="forget-password" component={ForgetPassword} />
         <Stack.Screen name="bottom-navigation" component={BottomNavigation} />
+
+        {/* bottom tab inner sub pages */}
+        <Stack.Screen name="send" component={Send} />
       </Stack.Navigator>
     </NavigationContainer>
   );

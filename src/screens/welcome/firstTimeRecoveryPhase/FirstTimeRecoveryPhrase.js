@@ -10,10 +10,10 @@ import {
   ScrollView,
   Button,
 } from 'react-native';
-import {Colors, Fonts} from '../../theme';
-import CustomButton from '../../components/CustomButton';
-import {height} from '../../theme/Matrics';
-import MainLayout from '../../components/layout/Layout';
+import {Colors, Fonts} from '../../../theme';
+import CustomButton from '../../../components/CustomButton';
+import {height} from '../../../theme/Matrics';
+import MainLayout from '../../../components/layout/Layout';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
@@ -21,11 +21,22 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 const {width} = Dimensions.get('window');
 
-const fields = new Array(12).fill('');
+const fields = [
+  'spring',
+  'toy',
+  'virus',
+  'soda',
+  'rule',
+  'ring',
+  'prefer',
+  'ethics',
+  'follow',
+  'pudding',
+  'pottery',
+  'suffer',
+];
 
-const words = ['', '', '', '', '', '', '', '', '', '', '', ''];
-
-const RecoveryPhraseScreen = () => {
+const firstTimeRecoveryPhase = () => {
   const [isView, setIsView] = useState(false);
   const navigation = useNavigation();
 
@@ -87,7 +98,7 @@ const RecoveryPhraseScreen = () => {
 
                 <View style={styles.container1}>
                   <View style={styles.grid1}>
-                    {fields.map((_, index) => {
+                    {fields.map((item, index) => {
                       const fieldName = `input_${index}`;
                       return (
                         <View key={fieldName} style={styles.inputContainer}>
@@ -101,7 +112,7 @@ const RecoveryPhraseScreen = () => {
                           </Text>
                           <TextInput
                             style={styles.input}
-                            value={values[fieldName]}
+                            value={item}
                             onChangeText={handleChange(fieldName)}
                             onBlur={handleBlur(fieldName)}
                           />
@@ -115,7 +126,10 @@ const RecoveryPhraseScreen = () => {
 
             <CustomButton
               title="Continue"
-              onPress={() => navigation.navigate('confirm-recovery-phase')}
+              disabled={isView}
+              onPress={() =>
+                navigation.navigate('confirm-first-recovery-phase')
+              }
             />
           </View>
         )}
@@ -124,11 +138,11 @@ const RecoveryPhraseScreen = () => {
   );
 };
 
-export default RecoveryPhraseScreen;
+export default firstTimeRecoveryPhase;
 
 const styles = StyleSheet.create({
   container1: {
-    padding: 16,
+    paddingVertical: 16,
   },
   title1: {
     fontSize: 18,
@@ -155,7 +169,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     paddingRight: 6,
-    color: Colors.black100,
+    color: Colors.gray90,
     // backgroundColor: 'red',
   },
   buttonWrapper: {

@@ -18,25 +18,28 @@ import CointList from './components/CointList';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Icon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 
 const buttons = [
-  { label: 'Send', icon: 'arrow-up-right', bg: '#2c2c2e' },
-  { label: 'Swap', icon: 'repeat', bg: '#2c2c2e' },
-  { label: 'Fund', icon: 'zap', bg: '#00ff8b' },
-  { label: 'Sell', icon: 'home', bg: '#2c2c2e' },
+  { label: 'Send', icon: 'arrow-up-right', bg: '#2c2c2e',link:"send" },
+  { label: 'Receive', icon: 'arrow-down-left', bg: '#2c2c2e',link:"send" },
+  // { label: 'Swap', icon: 'repeat', bg: '#2c2c2e' },
+  // { label: 'Fund', icon: 'zap', bg: '#00ff8b' },
+  // { label: 'Sell', icon: 'home', bg: '#2c2c2e' },
 ];
 
 export default function HomeScreen() {
   const [currentTab, setCurrentTab] = useState(0)
+  const navigation=useNavigation()
 
 
   const handleTabPress = (index) => {
     setCurrentTab(index);
-    Animated.timing(translateX, {
-      toValue: index * tabWidth,
-      duration: 200,
-      useNativeDriver: true,
-    }).start();
+    // Animated.timing(translateX, {
+    //   toValue: index * tabWidth,
+    //   duration: 200,
+    //   useNativeDriver: true,
+    // }).start();
   };
 
   return (
@@ -74,7 +77,7 @@ export default function HomeScreen() {
 
             <View style={styles.row}>
               {buttons.map((btn, index) => (
-                <TouchableOpacity key={index} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={()=>navigation.navigate(btn.link)} key={index} style={styles.buttonContainer}>
                   <View style={[styles.iconWrapper, { backgroundColor: btn.bg }]}>
                     <Icon
                       name={btn.icon}

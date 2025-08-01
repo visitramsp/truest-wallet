@@ -7,7 +7,8 @@ import {mediaFile} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
 import {height} from '../../theme/Matrics';
 import {Colors} from '../../theme';
-// import WebView from 'react-native-webview';
+import imageJson from '../../assets/startup.json';
+import LottieView from 'lottie-react-native';
 export default function WelcomeSecondScreen() {
   const navigation = useNavigation();
 
@@ -21,16 +22,19 @@ export default function WelcomeSecondScreen() {
             source={mediaFile.welcomeGIF}
             style={styles.gif}
           /> */}
+          <View>
+            <LottieView source={imageJson} autoPlay loop style={styles.gif} />
+          </View>
         </View>
         <View>
           <CustomButton
-            onPress={() => navigation.navigate('otp-screen')}
+            onPress={() => navigation.navigate('otp-screen', {isFirst: true})}
             title="Create new wallet"
           />
           <CustomButton
             style={{marginTop: 15, backgroundColor: Colors.gray60}}
             btnColor={{color: Colors.black80}}
-            onPress={() => navigation.navigate('choose-option')}
+            onPress={() => navigation.navigate('otp-screen', {isFirst: false})}
             title="I already have a wallet"
           />
           <Text style={styles.mainTitle}>
