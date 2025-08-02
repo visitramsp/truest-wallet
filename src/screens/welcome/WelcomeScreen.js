@@ -6,9 +6,7 @@ import styles from './Welcome.Styles';
 import {mediaFile} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
 import imageJson from '../../assets/startup.json';
-// import WebView from 'react-native-webview';
 import LottieView from 'lottie-react-native';
-// import CubeCard from '../../components/CubeCard';
 export default function WelcomeScreen() {
   const navigation = useNavigation();
 
