@@ -3,7 +3,6 @@ import MainLayout from '../../components/layout/Layout';
 import {Image, Text, View} from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import styles from './Welcome.Styles';
-import {mediaFile} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
 import imageJson from '../../assets/startup.json';
 import LottieView from 'lottie-react-native';
