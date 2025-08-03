@@ -5,6 +5,7 @@ import {
   Fonts,
   horizontalScale,
   verticalScale,
+  width,
 } from '../../theme';
 
 export const styles = StyleSheet.create({
@@ -74,11 +75,42 @@ export const styles = StyleSheet.create({
   },
   continueBtn: {
     flex: 1,
-    padding: 14,
+    padding: 10,
     borderRadius: 10,
     marginLeft: 8,
     alignItems: 'center',
     borderWidth: 1,
     borderColor: Colors.gray80,
+  },
+
+   tabContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    borderBottomWidth: 1,
+    paddingBottom: verticalScale(5),
+    borderColor: Colors.gray50,
+    position: 'relative',
+    marginTop: verticalScale(20),
+  },
+  tabView: {
+    paddingBottom: verticalScale(5),
+
+    position: 'relative',
+    top: 5,
+    width: width - horizontalScale(210),
+  },
+  activeTab: {
+    borderBottomWidth: 1,
+    borderColor: Colors.blue100,
+  },
+  tabText: {
+    fontSize: Fonts.size.uprSemi,
+    fontFamily: Fonts.type.montserratRegular,
+    fontWeight: Fonts.Weight.bold,
+    color: Colors.gray90,
+    textAlign: 'center',
+  },
+  activeText: {
+    color: Colors.blue100,
   },
 });

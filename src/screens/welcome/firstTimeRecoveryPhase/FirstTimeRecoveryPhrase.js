@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -10,16 +10,16 @@ import {
   ScrollView,
   Button,
 } from 'react-native';
-import {Colors, Fonts} from '../../../theme';
+import { Colors, Fonts } from '../../../theme';
 import CustomButton from '../../../components/CustomButton';
-import {height} from '../../../theme/Matrics';
+import { height } from '../../../theme/Matrics';
 import MainLayout from '../../../components/layout/Layout';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
-import {Formik} from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const fields = [
   'spring',
@@ -52,10 +52,10 @@ const firstTimeRecoveryPhase = () => {
         onSubmit={values => {
           console.log('Submitted values:', values);
         }}>
-        {({handleChange, handleBlur, values, handleSubmit}) => (
+        {({ handleChange, handleBlur, values, handleSubmit }) => (
           <View style={styles.container}>
             <View style={styles.topContainer}>
-              <View style={{position: 'relative', left: -10}}>
+              <View style={{ position: 'relative', left: -10 }}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                   <Entypo
                     name={'chevron-small-left'}
@@ -77,7 +77,7 @@ const firstTimeRecoveryPhase = () => {
               <View
                 style={[
                   styles.grid,
-                  !isView && {backgroundColor: Colors.gray40, borderRadius: 15},
+                  !isView && { backgroundColor: Colors.gray80, zIndex: 999, borderRadius: 15 },
                 ]}>
                 {!isView && (
                   <TouchableOpacity
@@ -101,17 +101,17 @@ const firstTimeRecoveryPhase = () => {
                     {fields.map((item, index) => {
                       const fieldName = `input_${index}`;
                       return (
-                        <View key={fieldName} style={styles.inputContainer}>
+                        <View key={fieldName} style={[styles.inputContainer, !isView && { borderColor: Colors.gray70 }]}>
                           <Text
-                            style={{
+                            style={[{
                               color: Colors.gray100,
                               fontWeight: Fonts.Weight.medium,
                               fontSize: 13,
-                            }}>
+                            }, !isView && { color: Colors.gray70 }]}>
                             {index + 1}
                           </Text>
                           <TextInput
-                            style={styles.input}
+                            style={[styles.input, !isView && { color: Colors.gray70 }]}
                             value={item}
                             onChangeText={handleChange(fieldName)}
                             onBlur={handleBlur(fieldName)}

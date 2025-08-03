@@ -17,7 +17,7 @@ const Colors = {
   bgColor: 'white',
   // bgColor: '#F9F9F9',
   skyBlue100: '#3B5998',
-  // blue100: '#3470FA',
+  custombBlue100: '#3470FA',
   // blue100: '#ff4dc3',
   blue100: '#141414',
   blue80: '#64b5f6',

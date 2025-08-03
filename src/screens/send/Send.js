@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
-import {styles} from './Send.Styles';
+import React, { useState } from 'react';
+import { styles } from './Send.Styles';
 import MainLayout from '../../components/layout/Layout';
 import {
+  Button,
   Image,
+  Pressable,
   ScrollView,
   Text,
   TextInput,
@@ -10,20 +12,27 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Colors} from '../../theme';
-import {useNavigation} from '@react-navigation/native';
-import {height} from '../../theme/Matrics';
-import {mediaFile} from '../../assets';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { Colors } from '../../theme';
+import { useNavigation } from '@react-navigation/native';
+import { height } from '../../theme/Matrics';
+import { mediaFile } from '../../assets';
+import Modal from 'react-native-modal';
 
 const buttons = [
-  {label: 'Send', icon: 'arrow-up-right', bg: '#2c2c2e', link: 'send'},
-  {label: 'Receive', icon: 'arrow-down-left', bg: '#2c2c2e', link: 'send'},
+  { label: 'Send', icon: 'arrow-up-right', bg: '#2c2c2e', link: 'send' },
+  { label: 'Receive', icon: 'arrow-down-left', bg: '#2c2c2e', link: 'send' },
 ];
 export default function Send() {
   const [fromAccount, setFromAccount] = useState('Account 3');
-  const [toAddress, setToAddress] = useState('');
-  const navigation = useNavigation();
-  const accounts = [
+  const [fromAddress, setFromAddress] = useState({
+    name: "Account 3",
+    address: "0x4e7DE...3Dd0E"
+  });
+  const [toAddress, setToAddress] = useState({
+    address: ""
+  });
+  const [accounts, setAccounts] = useState([
     {
       id: 1,
       name: 'Account 1',
@@ -39,7 +48,36 @@ export default function Send() {
       balance: '$0.00',
       icon: 'wallet-outline',
     },
-  ];
+  ]);
+  const [currentTab, setCurrentTab] = useState(0)
+  const navigation = useNavigation()
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+
+  const handleTabPress = (index) => {
+    setCurrentTab(index);
+  };
+  // const accounts = [
+  //   {
+  //     id: 1,
+  //     name: 'Account 1',
+  //     address: '0x0ceC8...d2A6c',
+  //     balance: '$0.00',
+  //     icon: 'wallet-outline',
+  //     tag: 'SRP #1',
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Account 2',
+  //     address: '0x74516...25518',
+  //     balance: '$0.00',
+  //     icon: 'wallet-outline',
+  //   },
+  // ];
   return (
     <MainLayout>
       <View style={styles.container}>
@@ -62,29 +100,29 @@ export default function Send() {
             }}>
             Send
           </Text>
-          <View />
+          <View style={{ width: 20 }} />
         </View>
         <View
           style={[
             styles.container,
             {
               paddingHorizontal: 0,
-              height: height - 200,
+              height: height - 180,
             },
           ]}>
-          <Text style={{color: Colors.gray100, fontSize: 14, marginBottom: 6}}>
+          <Text style={{ color: Colors.gray100, fontSize: 14, marginBottom: 6 }}>
             From
           </Text>
-          <TouchableOpacity style={styles.accountBox}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Pressable onPress={toggleModal} style={styles.accountBox}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Icon name="wallet" size={28} color={Colors.red100} />
-              <View style={{marginLeft: 12}}>
-                <Text style={styles.accountTitle}>{fromAccount}</Text>
-                <Text style={styles.accountAddress}>0x4e7DE...3Dd0E</Text>
+              <View style={{ marginLeft: 12 }}>
+                <Text style={styles.accountTitle}>{fromAddress.name}</Text>
+                <Text style={styles.accountAddress}>{fromAddress.address}</Text>
               </View>
             </View>
             <Icon name="chevron-down" size={22} color={Colors.gray100} />
-          </TouchableOpacity>
+          </Pressable>
 
           <Text
             style={{
@@ -96,53 +134,81 @@ export default function Send() {
             To
           </Text>
           <View style={styles.inputBox}>
-            <Text style={{color: Colors.gray100}}>
-              {'Enter public address (0x) or domain name'}
-            </Text>
-            <Icon name="qrcode-scan" size={22} color="#888" />
+            <View style={{flexDirection:"row",alignItems:"center", gap:12}}>
+              {
+                toAddress.address && <Image
+                  source={mediaFile.fox}
+                  style={{ height: 30, width: 30 }}
+                />
+              }
+              <Text style={{ color: Colors.gray100 }}>
+
+                {toAddress.address ? toAddress.address : 'Enter public address (0x) or domain name'}
+              </Text>
+            </View>
+
+            {
+              toAddress.address ?
+
+                <TouchableOpacity
+                  onPress={() => {
+                    setAccounts(prev => {
+                      // Add back the removed account only if it had an id
+                      return toAddress.id ? [...prev, toAddress] : prev;
+                    });
+                    setToAddress({ address: "" });
+                  }}
+                >
+
+                  <AntDesign name="close" size={22} color="#888" />
+                </TouchableOpacity>
+
+                : <Icon name="qrcode-scan" size={22} color="#888" />
+            }
+          </View >
+
+          <View style={styles.tabContainer}>
+            {
+              ["Your accounts", "Contacts"].map((row, index) =>
+                <TouchableOpacity onPress={() => handleTabPress(index)}>
+                  <View key={index} style={[styles.tabView, currentTab === index && styles.activeTab]}>
+                    <Text style={[styles.tabText, currentTab === index && styles.activeText]}>{row}</Text>
+                  </View>
+                </TouchableOpacity>
+              )
+            }
           </View>
 
-          <View style={styles.tabs}>
-            <Text style={[styles.tabItem, {borderBottomColor: '#fff'}]}>
-              Your accounts
-            </Text>
-            <Text style={styles.tabItem}>Contacts</Text>
-          </View>
 
-          {/* <View style={styles.row}>
-            {buttons.map((btn, index) => (
-              <TouchableOpacity
-                onPress={() => navigation.navigate(btn.link)}
-                key={index}
-                style={styles.buttonContainer}>
-                <View style={[styles.iconWrapper, {backgroundColor: btn.bg}]}>
-                  <Icon
-                    name={btn.icon}
-                    size={22}
-                    color={btn.label === 'Fund' ? '#000' : '#fff'}
-                  />
-                </View>
-                <Text style={styles.label}>{btn.label}</Text>
-              </TouchableOpacity>
-            ))}
-          </View> */}
 
-          <ScrollView style={{marginTop: 10}}>
+          <ScrollView style={{ marginTop: 10 }}>
             {accounts.map(acc => (
-              <TouchableOpacity key={acc.id} style={styles.accountList}>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  {/* <Icon name={acc.icon} size={28} color="#4da6ff" /> */}
+              <TouchableOpacity key={acc.id}
+
+                onPress={() => {
+                  setAccounts((prev) => {
+                    const updated = toAddress.id
+                      ? [...prev, toAddress]
+                      : [...prev];
+                    return updated.filter((item) => item.id !== acc.id);
+                  });
+
+                  setToAddress(acc);
+                }}
+                style={styles.accountList}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+
                   <Image
                     source={mediaFile.fox}
-                    style={{height: 40, width: 40}}
+                    style={{ height: 40, width: 40 }}
                   />
 
-                  <View style={{marginLeft: 12}}>
+                  <View style={{ marginLeft: 12 }}>
                     <Text style={styles.accountTitle}>{acc.name}</Text>
                     <Text style={styles.accountAddress}>{acc.address}</Text>
                   </View>
                 </View>
-                <View style={{alignItems: 'flex-end'}}>
+                <View style={{ alignItems: 'flex-end' }}>
                   <Text style={styles.balance}>{acc.balance} USD</Text>
                   {acc.tag && <Text style={styles.tag}>{acc.tag}</Text>}
                 </View>
@@ -153,15 +219,131 @@ export default function Send() {
 
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.continueBtn}>
-            <Text style={{color: '#000', fontSize: 16, fontWeight: 'bold'}}>
+            <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold' }}>
               Cancel
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.cancelBtn}>
-            <Text style={{color: '#fff', fontSize: 16}}> Continue</Text>
+            <Text style={{ color: '#fff', fontSize: 16 }}> Continue</Text>
           </TouchableOpacity>
         </View>
       </View>
+
+      <ToAddress isModalVisible={isModalVisible} setFromAddress={setFromAddress} toggleModal={toggleModal} />
     </MainLayout>
   );
+}
+
+const ToAddress = ({ isModalVisible, toggleModal, setFromAddress }) => {
+  const accounts = [
+    {
+      id: 1,
+      name: 'Account 1',
+      address: '0x0ceC8...d2A6c',
+      balance: '$0.00',
+      icon: 'wallet-outline',
+      tag: 'SRP #1',
+    },
+    {
+      id: 2,
+      name: 'Account 2',
+      address: '0x74516...25518',
+      balance: '$0.00',
+      icon: 'wallet-outline',
+    },
+    {
+      id: 3,
+      name: 'Account 1',
+      address: '0x0ceC8...d2A6c',
+      balance: '$0.00',
+      icon: 'wallet-outline',
+      tag: 'SRP #1',
+    },
+    {
+      id: 4,
+      name: 'Account 4',
+      address: '0x74516...25518',
+      balance: '$0.00',
+      icon: 'wallet-outline',
+    },
+    {
+      id: 5,
+      name: 'Account 5',
+      address: '0x0ceC8...d2A6c',
+      balance: '$0.00',
+      icon: 'wallet-outline',
+      tag: 'SRP #1',
+    },
+
+  ];
+  return (
+    <Modal
+      isVisible={isModalVisible}
+      onBackdropPress={toggleModal}
+      style={{ justifyContent: 'flex-end', margin: 0 }}
+    >
+      <View
+        style={{
+          backgroundColor: 'white',
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          padding: 16,
+          height: '60%',
+        }}
+      >
+        <View style={{ alignItems: 'center', marginBottom: 10 }}>
+          <View
+            style={{
+              height: 5,
+              width: 50,
+              backgroundColor: '#ccc',
+              borderRadius: 3,
+            }}
+          />
+        </View>
+
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: 'bold',
+            // marginBottom: 16,
+            color: '#000',
+          }}
+        >
+          Select Account
+        </Text>
+
+        <ScrollView>
+          {accounts.map((acc) => (
+            <TouchableOpacity key={acc.id} onPress={() => {
+              setFromAddress(acc)
+              toggleModal()
+            }} style={styles.accountList}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Image
+                  source={mediaFile.fox}
+                  style={{ height: 40, width: 40 }}
+                />
+                <View style={{ marginLeft: 12 }}>
+                  <Text style={styles.accountTitle}>{acc.name}</Text>
+                  <Text style={styles.accountAddress}>{acc.address}</Text>
+                </View>
+              </View>
+              <View style={{ alignItems: 'flex-end' }}>
+                <Text style={styles.balance}>{acc.balance} USD</Text>
+                {acc.tag && <Text style={styles.tag}>{acc.tag}</Text>}
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
+        {/* <TouchableOpacity
+          onPress={toggleModal}
+          style={{ marginTop: 12, alignSelf: 'flex-end' }}
+        >
+          <Text style={{ color: 'red' }}>Close</Text>
+        </TouchableOpacity> */}
+      </View>
+    </Modal>
+  )
 }

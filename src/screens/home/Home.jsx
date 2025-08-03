@@ -22,7 +22,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const buttons = [
   { label: 'Send', icon: 'arrow-up-right', bg: '#2c2c2e',link:"send" },
-  { label: 'Receive', icon: 'arrow-down-left', bg: '#2c2c2e',link:"send" },
+  { label: 'Receive', icon: 'arrow-down-left', bg: '#2c2c2e',link:"receive" },
   // { label: 'Swap', icon: 'repeat', bg: '#2c2c2e' },
   // { label: 'Fund', icon: 'zap', bg: '#00ff8b' },
   // { label: 'Sell', icon: 'home', bg: '#2c2c2e' },
@@ -54,8 +54,9 @@ export default function HomeScreen() {
             <MaterialIcons
               name={"qr-code-scanner"}
               size={25}
-              color={Colors.black100}
+              color={Colors.gray70}
             />
+            {/* <View style={{width:20}}/> */}
             <Text style={styles.mainWalletText}>Main Wallet</Text>
             <Octicons
               name={"filter"}

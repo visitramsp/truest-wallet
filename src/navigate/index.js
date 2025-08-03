@@ -25,6 +25,8 @@ import ConfirmRecoveryScreen from '../screens/welcome/ConfirmRecoveryScreen';
 import firstTimeRecoveryPhase from '../screens/welcome/firstTimeRecoveryPhase/FirstTimeRecoveryPhrase';
 import FirstTimeConfirmPhrase from '../screens/welcome/firstTimeRecoveryPhase/FirstTimeConfirmPhrase';
 import Send from '../screens/send/Send';
+import Receive from '../screens/receive/Receive';
+// import Congratulation from '../screens/congratulation/Congratulation';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -84,6 +86,10 @@ export default function Index() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+ <Stack.Screen name="bottom-navigation" component={BottomNavigation} />
+
+
+        {/* <Stack.Screen name="congratulation" component={Congratulation} /> */}
         <Stack.Screen name="welcome" component={WelcomeScreen} />
         <Stack.Screen
           name="welcome-second-screen"
@@ -108,10 +114,11 @@ export default function Index() {
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="otp-screen" component={OtpScreen} />
         <Stack.Screen name="forget-password" component={ForgetPassword} />
-        <Stack.Screen name="bottom-navigation" component={BottomNavigation} />
+        {/* <Stack.Screen name="bottom-navigation" component={BottomNavigation} /> */}
 
         {/* bottom tab inner sub pages */}
         <Stack.Screen name="send" component={Send} />
+         <Stack.Screen name="receive" component={Receive} />
       </Stack.Navigator>
     </NavigationContainer>
   );

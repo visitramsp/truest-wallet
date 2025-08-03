@@ -17,6 +17,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: verticalScale(50),
   },
+   stepText: {
+    color: Colors.gray100,
+    fontSize: Fonts.size.semi,
+    fontWeight: Fonts.Weight.low,
+    marginBottom: 10,
+  },
   gifView: {
     flex: 1,
     justifyContent: 'center',
@@ -34,11 +40,12 @@ const styles = StyleSheet.create({
     color: Colors.black80,
     paddingHorizontal: horizontalScale(10),
   },
+  
   termsText: {
-    color: Colors.blue100,
+    color: Colors.custombBlue100,
   },
   privacyText: {
-    color: Colors.blue100,
+    color: Colors.custombBlue100,
   },
   outerContainer: {
     flexDirection: 'column',
