@@ -67,7 +67,7 @@ export const styles = StyleSheet.create({
     gap: horizontalScale(15),
   },
   cancelBtn: {
-    backgroundColor: Colors.blue100,
+    backgroundColor: Colors.purple100,
     flex: 1,
     padding: 14,
     borderRadius: 10,
@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
     marginLeft: 8,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: Colors.gray80,
+    borderColor: Colors.purple100,
   },
 
    tabContainer: {

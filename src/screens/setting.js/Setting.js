@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,8 +7,9 @@ import {
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { Colors } from '../../theme';
-
+import { Colors, Fonts } from '../../theme';
+import * as Animatable from 'react-native-animatable';
+import { useFocusEffect } from '@react-navigation/native';
 const settingsItems = [
   {
     title: 'General',
@@ -33,19 +34,28 @@ const settingsItems = [
 ];
 
 export default function Settings() {
+
+  const [animationKey, setAnimationKey] = useState(0);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      // Trigger re-render with new animation key on screen focus
+      setAnimationKey(prev => prev + 1);
+    }, [])
+  );
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Settings</Text>
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {settingsItems.map((item, index) => (
-          <TouchableOpacity key={index} style={styles.item}>
+          <Animatable.View  key={`${animationKey}-${index}`}  animation={index % 2 === 0 ? 'slideInLeft' : 'slideInRight'} delay={500 + index * 200} duration={1000}  style={styles.item}>
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.title}</Text>
               <Text style={styles.subtitle}>{item.subtitle}</Text>
             </View>
             <Icon name="chevron-right" size={22} color="#ccc" />
-          </TouchableOpacity>
+          </Animatable.View>
         ))}
       </ScrollView>
     </View>
@@ -61,9 +71,10 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   header: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: Colors.black100,
+    fontSize: Fonts.size.f22,
+    fontWeight: Fonts.Weight.medium,
+    fonntFamily:Fonts.type.montserratSemiBold,
+    color: Colors.btnColor,
     marginBottom: 24,
   },
   item: {
@@ -80,12 +91,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: '600',
+   fontWeight:Fonts.Weight.semi,
+    fonntFamily:Fonts.type.montserratMedium,
     color: Colors.black100,
     marginBottom: 4,
   },
   subtitle: {
-    fontSize: 13,
+    fontSize: Fonts.size.small,
+    fontWeight:Fonts.Weight.low,
+    fonntFamily:Fonts.type.montserratMedium,
     color: Colors.gray70,
   },
 });

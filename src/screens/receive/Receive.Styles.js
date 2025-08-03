@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
     marginLeft: 8,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: Colors.gray80,
+    borderColor: Colors.btnColor,
   },
   title: {
     fontSize: 28,

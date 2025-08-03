@@ -26,6 +26,12 @@ const Colors = {
   primarySecond: '#B0B0B0',
   // primarySecond: '#fda3dfff',
   pink90: '#fce1f3ff',
+  btnColor:"#9827F5",
+  purple100:"#9827F5",
+  purple50:"#D7A1FF",
+  purple10:"#ebd8f8ff",
+
+  
 };
 
 export default Colors;

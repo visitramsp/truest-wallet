@@ -1,25 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
-  FlatList,
   Dimensions,
   TextInput,
-  ScrollView,
-  Button,
 } from 'react-native';
-import {Colors, Fonts} from '../../theme';
+import { Colors, Fonts } from '../../theme';
 import CustomButton from '../../components/CustomButton';
-import {height} from '../../theme/Matrics';
+import { height } from '../../theme/Matrics';
 import MainLayout from '../../components/layout/Layout';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Feather';
-import {Formik} from 'formik';
-import * as Yup from 'yup';
-const {width} = Dimensions.get('window');
+import { useNavigation } from '@react-navigation/native';
+import { Formik } from 'formik';
+import * as Animatable from 'react-native-animatable';
+const { width } = Dimensions.get('window');
 
 const fields = new Array(12).fill('');
 
@@ -41,32 +37,46 @@ const RecoveryPhraseScreen = () => {
         onSubmit={values => {
           console.log('Submitted values:', values);
         }}>
-        {({handleChange, handleBlur, values, handleSubmit}) => (
+        {({ handleChange, handleBlur, values, handleSubmit }) => (
           <View style={styles.container}>
             <View style={styles.topContainer}>
-              <View style={{position: 'relative', left: -10}}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                  <Entypo
-                    name={'chevron-small-left'}
-                    size={40}
-                    color={Colors.gray80}
-                  />
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.stepText}>Step 2 of 3</Text>
-              <Text style={styles.title}>Save your Secret Recovery Phrase</Text>
-              <Text style={styles.subtitle}>
-                This is your{' '}
-                <Text style={styles.highlight}>Secret Recovery Phrase</Text>.
-                Write it down in the correct order and keep it safe. If someone
-                has your Secret Recovery Phrase, they can access your wallet.
-                Don’t share it with anyone, ever.
-              </Text>
+              <Animatable.View
+                animation="fadeInLeft"
+                delay={200}
+                duration={700}
+              >
+                <View style={{ position: 'relative', left: -10 }}>
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Entypo
+                      name={'chevron-small-left'}
+                      size={40}
+                      color={Colors.purple50}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <Text style={styles.stepText}>Step 2 of 3</Text>
+              </Animatable.View>
 
-              <View
+              <Animatable.View
+
+                animation="fadeInRight"
+                delay={200}
+                duration={700}
+              >
+                <Text style={styles.title}>Save your <Text style={{ color: Colors.btnColor }}>Secret Recovery Phrase</Text></Text>
+                <Text style={styles.subtitle}>
+                  This is your{' '}
+                  <Text style={styles.highlight}>Secret Recovery Phrase</Text>.
+                  Write it down in the correct order and keep it safe. If someone
+                  has your Secret Recovery Phrase, they can access your wallet.
+                  Don’t share it with anyone, ever.
+                </Text>
+              </Animatable.View>
+
+              <Animatable.View animation="zoomIn" delay={300} duration={1500}
                 style={[
                   styles.grid,
-                  !isView && {backgroundColor: Colors.gray40, borderRadius: 15},
+                  !isView && { backgroundColor: Colors.gray80, borderRadius: 15 },
                 ]}>
                 {!isView && (
                   <TouchableOpacity
@@ -80,7 +90,7 @@ const RecoveryPhraseScreen = () => {
                     <Entypo
                       name={'eye-with-line'}
                       size={40}
-                      color={Colors.blue80}
+                      color={Colors.purple50}
                     />
                   </TouchableOpacity>
                 )}
@@ -90,17 +100,18 @@ const RecoveryPhraseScreen = () => {
                     {fields.map((_, index) => {
                       const fieldName = `input_${index}`;
                       return (
-                        <View key={fieldName} style={styles.inputContainer}>
+                        <View key={fieldName} style={[styles.inputContainer, !isView && { borderColor: Colors.gray70 }]}>
                           <Text
-                            style={{
+                            style={[{
                               color: Colors.gray100,
                               fontWeight: Fonts.Weight.medium,
                               fontSize: 13,
-                            }}>
-                            {index + 1}
+                            }, !isView && { color: Colors.gray70 }]}>
+                            {index + 1}.
                           </Text>
                           <TextInput
-                            style={styles.input}
+                          editable={isView}
+                            style={[styles.input, !isView && { color: Colors.gray70 }]}
                             value={values[fieldName]}
                             onChangeText={handleChange(fieldName)}
                             onBlur={handleBlur(fieldName)}
@@ -110,13 +121,16 @@ const RecoveryPhraseScreen = () => {
                     })}
                   </View>
                 </View>
-              </View>
+              </Animatable.View>
             </View>
 
-            <CustomButton
-              title="Continue"
-              onPress={() => navigation.navigate('confirm-recovery-phase')}
-            />
+            <Animatable.View animation="slideInUp" delay={1000} duration={1000}>
+              <CustomButton
+                title="Continue"
+                disabled={isView}
+                onPress={() => navigation.navigate('confirm-recovery-phase')}
+              />
+            </Animatable.View>
           </View>
         )}
       </Formik>
@@ -128,7 +142,7 @@ export default RecoveryPhraseScreen;
 
 const styles = StyleSheet.create({
   container1: {
-    padding: 16,
+    paddingVertical: 16,
   },
   title1: {
     fontSize: 18,
@@ -143,20 +157,22 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: '30%',
-    marginVertical: 8,
+    marginVertical: 6,
     borderWidth: 1,
-    borderColor: Colors.gray60,
+    borderColor: Colors.purple10,
     borderRadius: 6,
     padding: 0,
-    paddingHorizontal: 3,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingLeft: 6,
   },
   input: {
     width: '100%',
     paddingRight: 6,
-    color: Colors.black100,
-    // backgroundColor: 'red',
+    color: Colors.gray100,
+    fontWeight:Fonts.Weight.medium,
+    fontFamily:Fonts.type.montserratMedium,
+    paddingBottom:9
   },
   buttonWrapper: {
     marginTop: 24,
@@ -179,19 +195,21 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: Fonts.size.f24,
-    color: Colors.black100,
-    fontWeight: Fonts.Weight.bold,
+    color: Colors.black80,
+    fontWeight: Fonts.Weight.medium,
     marginVertical: 10,
+    fontFamily: Fonts.type.montserratMedium,
   },
   subtitle: {
     fontSize: Fonts.size.medium,
     fontWeight: Fonts.Weight.low,
-    color: Colors.black80,
+    fontFamily: Fonts.type.montserratRegular,
+    color: Colors.gray100,
     marginBottom: 25,
     lineHeight: 20,
   },
   highlight: {
-    color: Colors.primarySecond,
+    color: Colors.gray100,
     fontWeight: 'bold',
   },
   grid: {

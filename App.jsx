@@ -5,8 +5,9 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+  ActivityIndicator,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -27,34 +28,41 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from './src/store/Store';
-// import Index from './src/navigate';
-
-
+// import BootSplash from 'react-native-bootsplash';
 
 function App() {
-  const isDarkMode = useColorScheme() === 'light';
+  const [isLoading, setIsLoading] = useState(true);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
-  /*
-   * To keep the template simple and small we're adding padding to prevent view
-   * from rendering under the System UI.
-   * For bigger apps the reccomendation is to use `react-native-safe-area-context`:
-   * https://github.com/AppAndFlow/react-native-safe-area-context
-   *
-   * You can read more about it here:
-   * https://github.com/react-native-community/discussions-and-proposals/discussions/827
-   */
-  const safePadding = '5%';
+  //  useEffect(() => {
+  //   // Hide splash screen when app is ready
+  //   BootSplash.hide({ fade: true });
+  // }, []);
+  useEffect(() => {
+    // Simulate loading (API call or startup task)
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // 2 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading App...</Text>
+      </View>
+    );
+  }
 
   return (
-   <SafeAreaProvider>
-    <Provider store={store}>
+    <SafeAreaProvider>
+      <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-       <Index /> 
-      </PersistGate>
+          <Index />
+        </PersistGate>
       </Provider>
     </SafeAreaProvider>
   );

@@ -1,43 +1,43 @@
 import React from 'react';
 import MainLayout from '../../components/layout/Layout';
-import {Image, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import styles from './Welcome.Styles';
-import {mediaFile} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
 import imageJson from '../../assets/startup.json';
 import LottieView from 'lottie-react-native';
+import * as Animatable from 'react-native-animatable';
+
 export default function WelcomeScreen() {
   const navigation = useNavigation();
 
   return (
     <MainLayout>
-      <View style={styles.container}>
+      <Animatable.View 
+        style={styles.container} 
+        animation="fadeIn" 
+        duration={1000}
+      >
         <View style={styles.gifView}>
-          {/* <Image source={mediaFile.welcomeGIF} style={styles.gif} /> */}
           <View style={{height: 200}} />
-          {/* <WebView
-            originWhitelist={['*']}
-            source={mediaFile.welcomeGIF}
-            style={styles.gif}
-          /> */}
-          <View>
+          <Animatable.View animation="zoomIn" delay={300} duration={1500}>
             <LottieView source={imageJson} autoPlay loop style={styles.gif} />
-          </View>
+          </Animatable.View>
         </View>
-        <View>
+
+        <Animatable.View animation="slideInUp" delay={1000} duration={1000}>
           <CustomButton
             onPress={() => navigation.navigate('welcome-second-screen')}
             title="Get Started"
           />
           <Text style={styles.mainTitle}>
-            By Trapping "Get Started" you agree and consent to our
+            By tapping "Get Started" you agree and consent to our
             <Text style={styles.termsText}> Terms of Service </Text>
             and
             <Text style={styles.privacyText}> Privacy Policy</Text>
           </Text>
-        </View>
-      </View>
+        </Animatable.View>
+      </Animatable.View>
     </MainLayout>
   );
 }

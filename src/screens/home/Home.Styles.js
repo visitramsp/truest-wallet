@@ -25,8 +25,9 @@ const styles = StyleSheet.create({
   },
   mainWalletText: {
     fontSize: Fonts.size.regularLarge,
+    fontWeight: Fonts.Weight.seven,
     fontFamily: Fonts.type.montserratRegular,
-    fontWeight: Fonts.Weight.bold,
+    
     color: Colors.black100,
   },
 

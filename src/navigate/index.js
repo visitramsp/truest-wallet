@@ -49,17 +49,17 @@ function BottomNavigation() {
             <MaterialIcons
               name={iconName}
               size={30}
-              color={focused ? Colors.blue100 : Colors.gray100}
+              color={focused ? Colors.btnColor : Colors.gray100}
             />
           ) : (
             <Icon
               name={iconName}
               size={24}
-              color={focused ? Colors.blue100 : Colors.gray100}
+              color={focused ? Colors.btnColor : Colors.gray100}
             />
           );
         },
-        tabBarActiveTintColor: Colors.blue100,
+        tabBarActiveTintColor: Colors.btnColor,
         tabBarInactiveTintColor: Colors.gray100,
         tabBarLabelStyle: {fontSize: 12},
         tabBarStyle: {
@@ -70,6 +70,7 @@ function BottomNavigation() {
           // borderTopRightRadius: 20,
           position: 'absolute',
           backgroundColor: Colors.white80,
+          
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 import { mediaFile } from '../../../assets';
 import { Colors, Fonts } from '../../../theme';
-
+import * as Animatable from 'react-native-animatable';
+import { useFocusEffect } from '@react-navigation/native';
 const coinData = [
   {
     id: '1',
@@ -16,7 +17,7 @@ const coinData = [
   {
     id: '2',
     name: 'Bitcoin',
-    icon:mediaFile.bnb, 
+    icon: mediaFile.bnb,
     percentChange: '+0.85%',
     earnRate: '1.8%',
     balance: '0.05',
@@ -33,8 +34,9 @@ const coinData = [
   },
 ];
 
-const CoinCard = ({ coin }) => (
-  <View style={styles.card}>
+const CoinCard = ({ coin, index, animationKey }) => (
+
+  <Animatable.View key={`${animationKey}-${index}`} animation={index % 2 === 0 ? 'slideInLeft' : 'slideInRight'} delay={700 + index * 200} duration={1000} style={styles.card}>
     <View style={styles.left}>
       <Image source={coin.icon} style={styles.icon} />
       <View>
@@ -51,18 +53,24 @@ const CoinCard = ({ coin }) => (
       <Text style={styles.balance}>{coin.balance} {coin.name === 'Ethereum' ? 'ETH' : ''}</Text>
       <Text style={styles.value}>{coin.value}</Text>
     </View>
-  </View>
+  </Animatable.View>
 );
 
 const CointList = () => {
+  const [animationKey, setAnimationKey] = useState(0);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setAnimationKey(prev => prev + 1);
+    }, [])
+  );
   return (
     <FlatList
       data={coinData}
       keyExtractor={item => item.id}
-      renderItem={({ item }) => <CoinCard coin={item}
-    //   contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 20, }}
-      
-      />}
+      renderItem={({ item, index }) => (
+        <CoinCard coin={item} index={index} animationKey={animationKey} />
+      )}
     />
   );
 };
@@ -79,7 +87,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderRadius: 12,
     alignItems: 'center',
-    borderRadius:10
+    borderRadius: 10
   },
   left: {
     flexDirection: 'row',
@@ -106,7 +114,7 @@ const styles = StyleSheet.create({
     color: Colors.blue80,
   },
   balance: {
-    color:Colors.black100,
+    color: Colors.black100,
     fontSize: 14,
     fontWeight: Fonts.Weight.medium,
   },

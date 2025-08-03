@@ -19,6 +19,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import * as Animatable from 'react-native-animatable';
 const { width } = Dimensions.get('window');
 
 const fields = [
@@ -55,26 +56,47 @@ const firstTimeRecoveryPhase = () => {
         {({ handleChange, handleBlur, values, handleSubmit }) => (
           <View style={styles.container}>
             <View style={styles.topContainer}>
-              <View style={{ position: 'relative', left: -10 }}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                  <Entypo
-                    name={'chevron-small-left'}
-                    size={40}
-                    color={Colors.gray80}
-                  />
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.stepText}>Step 2 of 3</Text>
-              <Text style={styles.title}>Save your Secret Recovery Phrase</Text>
-              <Text style={styles.subtitle}>
-                This is your{' '}
-                <Text style={styles.highlight}>Secret Recovery Phrase</Text>.
-                Write it down in the correct order and keep it safe. If someone
-                has your Secret Recovery Phrase, they can access your wallet.
-                Don’t share it with anyone, ever.
-              </Text>
+              <Animatable.View
+                animation="fadeInLeft"
+                delay={200}
+                duration={700}
+              >
+                <View
+                  animation="fadeInLeft"
+                  delay={200}
+                  duration={700}
+                  style={{ position: 'relative', left: -10 }}>
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Entypo
+                      name={'chevron-small-left'}
+                      size={40}
+                      color={Colors.purple50}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <Text style={styles.stepText}>Step 2 of 3</Text>
+              </Animatable.View>
+              <Animatable.View
 
-              <View
+                animation="fadeInRight"
+                delay={200}
+                duration={700}
+              >
+
+                <Text style={styles.title}>Save your <Text style={{ color: Colors.btnColor }}>Secret Recovery Phrase</Text></Text>
+                <Text style={styles.subtitle}>
+                  This is your{' '}
+                  <Text style={styles.highlight}>Secret Recovery Phrase</Text>.
+                  Write it down in the correct order and keep it safe. If someone
+                  has your Secret Recovery Phrase, they can access your wallet.
+                  Don’t share it with anyone, ever.
+                </Text>
+              </Animatable.View>
+
+              <Animatable.View animation="zoomIn" delay={300} duration={1500}
+
+
+
                 style={[
                   styles.grid,
                   !isView && { backgroundColor: Colors.gray80, zIndex: 999, borderRadius: 15 },
@@ -91,7 +113,7 @@ const firstTimeRecoveryPhase = () => {
                     <Entypo
                       name={'eye-with-line'}
                       size={40}
-                      color={Colors.blue80}
+                      color={Colors.purple50}
                     />
                   </TouchableOpacity>
                 )}
@@ -108,7 +130,7 @@ const firstTimeRecoveryPhase = () => {
                               fontWeight: Fonts.Weight.medium,
                               fontSize: 13,
                             }, !isView && { color: Colors.gray70 }]}>
-                            {index + 1}
+                            {index + 1}.
                           </Text>
                           <TextInput
                             style={[styles.input, !isView && { color: Colors.gray70 }]}
@@ -121,16 +143,20 @@ const firstTimeRecoveryPhase = () => {
                     })}
                   </View>
                 </View>
-              </View>
+              </Animatable.View>
             </View>
 
-            <CustomButton
-              title="Continue"
-              disabled={isView}
-              onPress={() =>
-                navigation.navigate('confirm-first-recovery-phase')
-              }
-            />
+            <Animatable.View animation="slideInUp" delay={1000} duration={1000}>
+              <CustomButton
+                title="Continue"
+                disabled={isView}
+                onPress={() =>
+                  navigation.navigate('confirm-first-recovery-phase')
+                }
+              />
+
+            </Animatable.View>
+
           </View>
         )}
       </Formik>
@@ -159,9 +185,10 @@ const styles = StyleSheet.create({
     width: '30%',
     marginVertical: 8,
     borderWidth: 1,
-    borderColor: Colors.gray60,
+    borderColor: Colors.purple10,
     borderRadius: 6,
     padding: 0,
+    paddingLeft: 6,
     paddingHorizontal: 3,
     flexDirection: 'row',
     alignItems: 'center',
@@ -193,19 +220,21 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: Fonts.size.f24,
-    color: Colors.black100,
-    fontWeight: Fonts.Weight.bold,
+    color: Colors.black80,
+    fontWeight: Fonts.Weight.medium,
     marginVertical: 10,
+    fontFamily: Fonts.type.montserratMedium,
   },
   subtitle: {
     fontSize: Fonts.size.medium,
     fontWeight: Fonts.Weight.low,
-    color: Colors.black80,
+    fontFamily: Fonts.type.montserratRegular,
+    color: Colors.gray100,
     marginBottom: 25,
     lineHeight: 20,
   },
   highlight: {
-    color: Colors.primarySecond,
+    color: Colors.gray100,
     fontWeight: 'bold',
   },
   grid: {

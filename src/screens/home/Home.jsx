@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -18,33 +18,30 @@ import CointList from './components/CointList';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Icon from 'react-native-vector-icons/Feather';
-import { useNavigation } from '@react-navigation/native';
-
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import * as Animatable from 'react-native-animatable';
 const buttons = [
-  { label: 'Send', icon: 'arrow-up-right', bg: '#2c2c2e',link:"send" },
-  { label: 'Receive', icon: 'arrow-down-left', bg: '#2c2c2e',link:"receive" },
-  // { label: 'Swap', icon: 'repeat', bg: '#2c2c2e' },
-  // { label: 'Fund', icon: 'zap', bg: '#00ff8b' },
-  // { label: 'Sell', icon: 'home', bg: '#2c2c2e' },
+  { label: 'Send', icon: 'arrow-up-right', bg: "#00ff8b", link: "send" },
+  { label: 'Receive', icon: 'arrow-down-left', bg: "#F75454", link: "receive" },
 ];
 
 export default function HomeScreen() {
   const [currentTab, setCurrentTab] = useState(0)
-  const navigation=useNavigation()
-
+  const navigation = useNavigation()
+  const [animationKey, setAnimationKey] = useState(0);
+  useFocusEffect(
+    React.useCallback(() => {
+      setAnimationKey(prev => prev + 1);
+    }, [])
+  );
 
   const handleTabPress = (index) => {
     setCurrentTab(index);
-    // Animated.timing(translateX, {
-    //   toValue: index * tabWidth,
-    //   duration: 200,
-    //   useNativeDriver: true,
-    // }).start();
   };
 
   return (
     <>
-      <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
+      <StatusBar backgroundColor="transparent" translucent barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <ScrollView
           contentContainerStyle={styles.scrollContent}
@@ -56,7 +53,6 @@ export default function HomeScreen() {
               size={25}
               color={Colors.gray70}
             />
-            {/* <View style={{width:20}}/> */}
             <Text style={styles.mainWalletText}>Main Wallet</Text>
             <Octicons
               name={"filter"}
@@ -68,7 +64,8 @@ export default function HomeScreen() {
 
 
 
-          <View style={styles.containerMiddle}>
+          <View  style={styles.containerMiddle}>
+          {/* <Animatable.View  key={`balance-${animationKey}`} animation="zoomIn" delay={300} duration={1000} style={styles.containerMiddle}> */}
 
             <View style={styles.balanceContainer}>
               <Text style={styles.balance}>$0.00</Text>
@@ -78,12 +75,12 @@ export default function HomeScreen() {
 
             <View style={styles.row}>
               {buttons.map((btn, index) => (
-                <TouchableOpacity onPress={()=>navigation.navigate(btn.link)} key={index} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate(btn.link)} key={index} style={styles.buttonContainer}>
                   <View style={[styles.iconWrapper, { backgroundColor: btn.bg }]}>
                     <Icon
                       name={btn.icon}
-                      size={22}
-                      color={btn.label === 'Fund' ? '#000' : '#fff'}
+                      size={27}
+                      color={btn.label === 'Send' ? '#fff' : '#fff'}
                     />
                   </View>
                   <Text style={styles.label}>{btn.label}</Text>

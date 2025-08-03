@@ -1,14 +1,13 @@
 import React from 'react';
 import MainLayout from '../../components/layout/Layout';
-import {Image, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import styles from './Welcome.Styles';
-import {mediaFile} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
-import {height} from '../../theme/Matrics';
 import {Colors} from '../../theme';
 import imageJson from '../../assets/startup.json';
 import LottieView from 'lottie-react-native';
+import * as Animatable from 'react-native-animatable';
 export default function WelcomeSecondScreen() {
   const navigation = useNavigation();
 
@@ -17,23 +16,19 @@ export default function WelcomeSecondScreen() {
       <View style={styles.container}>
         <View style={[styles.gifView, {}]}>
           <View style={{height: 200}} />
-          {/* <WebView
-            originWhitelist={['*']}
-            source={mediaFile.welcomeGIF}
-            style={styles.gif}
-          /> */}
-          <View>
+        
+         <Animatable.View animation="zoomIn" delay={300} duration={1500}>
             <LottieView source={imageJson} autoPlay loop style={styles.gif} />
-          </View>
+          </Animatable.View>
         </View>
-        <View>
+        <Animatable.View animation="slideInUp" delay={1000} duration={1000}>
           <CustomButton
             onPress={() => navigation.navigate('otp-screen', {isFirst: true})}
             title="Create new wallet"
           />
           <CustomButton
             style={{marginTop: 15, backgroundColor: Colors.gray60}}
-            btnColor={{color: Colors.black80}}
+            btnColor={{color: "#B455FA"}}
             onPress={() => navigation.navigate('otp-screen', {isFirst: false})}
             title="I already have a wallet"
           />
@@ -43,7 +38,7 @@ export default function WelcomeSecondScreen() {
             and
             <Text style={styles.privacyText}> Privacy Policy</Text>
           </Text>
-        </View>
+        </Animatable.View>
       </View>
     </MainLayout>
   );

@@ -14,10 +14,11 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { Colors } from '../../theme';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { height } from '../../theme/Matrics';
 import { mediaFile } from '../../assets';
 import Modal from 'react-native-modal';
+import * as Animatable from 'react-native-animatable';
 
 const buttons = [
   { label: 'Send', icon: 'arrow-up-right', bg: '#2c2c2e', link: 'send' },
@@ -52,6 +53,13 @@ export default function Send() {
   const [currentTab, setCurrentTab] = useState(0)
   const navigation = useNavigation()
   const [isModalVisible, setModalVisible] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
+  useFocusEffect(
+    React.useCallback(() => {
+      setAnimationKey(prev => prev + 1);
+    }, [])
+  );
+
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -61,23 +69,7 @@ export default function Send() {
   const handleTabPress = (index) => {
     setCurrentTab(index);
   };
-  // const accounts = [
-  //   {
-  //     id: 1,
-  //     name: 'Account 1',
-  //     address: '0x0ceC8...d2A6c',
-  //     balance: '$0.00',
-  //     icon: 'wallet-outline',
-  //     tag: 'SRP #1',
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Account 2',
-  //     address: '0x74516...25518',
-  //     balance: '$0.00',
-  //     icon: 'wallet-outline',
-  //   },
-  // ];
+
   return (
     <MainLayout>
       <View style={styles.container}>
@@ -89,7 +81,7 @@ export default function Send() {
             marginBottom: 20,
           }}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon name="arrow-left" size={24} color={Colors.black100} />
+            <Icon name="arrow-left" size={24} color={Colors.purple50} />
           </TouchableOpacity>
           <Text
             style={{
@@ -134,7 +126,7 @@ export default function Send() {
             To
           </Text>
           <View style={styles.inputBox}>
-            <View style={{flexDirection:"row",alignItems:"center", gap:12}}>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
               {
                 toAddress.address && <Image
                   source={mediaFile.fox}
@@ -170,6 +162,7 @@ export default function Send() {
           <View style={styles.tabContainer}>
             {
               ["Your accounts", "Contacts"].map((row, index) =>
+
                 <TouchableOpacity onPress={() => handleTabPress(index)}>
                   <View key={index} style={[styles.tabView, currentTab === index && styles.activeTab]}>
                     <Text style={[styles.tabText, currentTab === index && styles.activeText]}>{row}</Text>
@@ -182,44 +175,46 @@ export default function Send() {
 
 
           <ScrollView style={{ marginTop: 10 }}>
-            {accounts.map(acc => (
-              <TouchableOpacity key={acc.id}
+            {accounts.map((acc, index) => (
+              <Animatable.View key={`${animationKey}-${index}`} animation={index % 2 === 0 ? 'slideInLeft' : 'slideInRight'} delay={700 + index * 200} duration={1000}>
+                <TouchableOpacity key={acc.id}
 
-                onPress={() => {
-                  setAccounts((prev) => {
-                    const updated = toAddress.id
-                      ? [...prev, toAddress]
-                      : [...prev];
-                    return updated.filter((item) => item.id !== acc.id);
-                  });
+                  onPress={() => {
+                    setAccounts((prev) => {
+                      const updated = toAddress.id
+                        ? [...prev, toAddress]
+                        : [...prev];
+                      return updated.filter((item) => item.id !== acc.id);
+                    });
 
-                  setToAddress(acc);
-                }}
-                style={styles.accountList}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    setToAddress(acc);
+                  }}
+                  style={styles.accountList}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 
-                  <Image
-                    source={mediaFile.fox}
-                    style={{ height: 40, width: 40 }}
-                  />
+                    <Image
+                      source={mediaFile.fox}
+                      style={{ height: 40, width: 40 }}
+                    />
 
-                  <View style={{ marginLeft: 12 }}>
-                    <Text style={styles.accountTitle}>{acc.name}</Text>
-                    <Text style={styles.accountAddress}>{acc.address}</Text>
+                    <View style={{ marginLeft: 12 }}>
+                      <Text style={styles.accountTitle}>{acc.name}</Text>
+                      <Text style={styles.accountAddress}>{acc.address}</Text>
+                    </View>
                   </View>
-                </View>
-                <View style={{ alignItems: 'flex-end' }}>
-                  <Text style={styles.balance}>{acc.balance} USD</Text>
-                  {acc.tag && <Text style={styles.tag}>{acc.tag}</Text>}
-                </View>
-              </TouchableOpacity>
+                  <View style={{ alignItems: 'flex-end' }}>
+                    <Text style={styles.balance}>{acc.balance} USD</Text>
+                    {acc.tag && <Text style={styles.tag}>{acc.tag}</Text>}
+                  </View>
+                </TouchableOpacity>
+              </Animatable.View>
             ))}
           </ScrollView>
         </View>
 
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.continueBtn}>
-            <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold' }}>
+            <Text style={{ color: Colors.btnColor, fontSize: 16, fontWeight: 'bold' }}>
               Cancel
             </Text>
           </TouchableOpacity>

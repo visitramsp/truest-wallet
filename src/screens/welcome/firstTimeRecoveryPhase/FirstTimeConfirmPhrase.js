@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,34 +7,36 @@ import {
   Dimensions,
   TextInput,
 } from 'react-native';
-import {Colors, Fonts} from '../../../theme';
+import { Colors, Fonts } from '../../../theme';
 import CustomButton from '../../../components/CustomButton';
-import {height} from '../../../theme/Matrics';
+import { height } from '../../../theme/Matrics';
 import MainLayout from '../../../components/layout/Layout';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {useNavigation} from '@react-navigation/native';
-import {Formik} from 'formik';
-const {width} = Dimensions.get('window');
+import { CommonActions, useNavigation } from '@react-navigation/native';
+import { Formik } from 'formik';
+import * as Animatable from 'react-native-animatable';
+import { capitalize } from '../../../utils/Letter';
+const { width } = Dimensions.get('window');
 
 const fields = [
-  {key: 1, value: 'spring', isActive: false},
-  {key: 2, value: 'toy', isActive: true},
-  {key: 3, value: 'virus', isActive: true},
-  {key: 4, value: 'soda', isActive: true},
-  {key: 5, value: 'rule', isActive: false},
-  {key: 6, value: 'ring', isActive: true},
-  {key: 7, value: 'prefer', isActive: true},
-  {key: 8, value: 'ethics', isActive: true},
-  {key: 9, value: 'follow', isActive: true},
-  {key: 10, value: 'pudding', isActive: false},
-  {key: 11, value: 'pottery', isActive: true},
-  {key: 12, value: 'suffer', isActive: true},
+  { key: 1, value: 'spring', isActive: false },
+  { key: 2, value: 'toy', isActive: true },
+  { key: 3, value: 'virus', isActive: true },
+  { key: 4, value: 'soda', isActive: true },
+  { key: 5, value: 'rule', isActive: false },
+  { key: 6, value: 'ring', isActive: true },
+  { key: 7, value: 'prefer', isActive: true },
+  { key: 8, value: 'ethics', isActive: true },
+  { key: 9, value: 'follow', isActive: true },
+  { key: 10, value: 'pudding', isActive: false },
+  { key: 11, value: 'pottery', isActive: true },
+  { key: 12, value: 'suffer', isActive: true },
 ];
 
 const confirmationArr = [
-  {key: 1, value: 'spring', isActive: false},
-  {key: 5, value: 'rule', isActive: false},
-  {key: 10, value: 'pudding', isActive: false},
+  { key: 1, value: 'spring', isActive: false },
+  { key: 5, value: 'rule', isActive: false },
+  { key: 10, value: 'pudding', isActive: false },
 ];
 
 const FirstTimeConfirmPhrase = () => {
@@ -50,16 +52,17 @@ const FirstTimeConfirmPhrase = () => {
 
   const handleWordClick = item => {
     setFieldData(prev =>
-      prev.map(f => (f.key === item.key ? {...f, isActive: true} : f)),
+      prev.map(f => (f.key === item.key ? { ...f, isActive: true } : f)),
     );
 
     setConfirmData(prev =>
-      prev.map(f => (f.key === item.key ? {...f, isActive: true} : f)),
+      prev.map(f => (f.key === item.key ? { ...f, isActive: true } : f)),
     );
   };
   const allActive = fieldData.every(f => f.isActive);
 
   console.log(allActive, 'allActive');
+
 
   return (
     <MainLayout>
@@ -68,116 +71,153 @@ const FirstTimeConfirmPhrase = () => {
         onSubmit={values => {
           console.log('Submitted values:', values);
         }}>
-        {({handleChange, handleBlur, values, handleSubmit}) => (
+        {({ handleChange, handleBlur, values, handleSubmit }) => (
           <View style={styles.container}>
             <View style={styles.topContainer}>
-              <View style={{position: 'relative', left: -10}}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                  <Entypo
-                    name={'chevron-small-left'}
-                    size={40}
-                    color={Colors.gray80}
-                  />
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.stepText}>Step 3 of 3</Text>
-              <Text style={styles.title}>
-                Confirm your Secret Recovery Phrase
-              </Text>
-              <Text style={styles.subtitle}>
-                Please select each phrase in order to make sure it is correct
-              </Text>
+              <Animatable.View
+                animation="fadeInLeft"
+                delay={200}
+                duration={700}
+              >
+                <View
+                  animation="fadeInLeft"
+                  delay={200}
+                  duration={700}
+                  style={{ position: 'relative', left: -10 }}>
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Entypo
+                      name={'chevron-small-left'}
+                      size={40}
+                      color={Colors.purple50}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <Text style={styles.stepText}>Step 3 of 3</Text>
+              </Animatable.View>
 
-              <View style={[styles.gridContainer]}>
-                <View style={styles.container1}>
+              <Animatable.View
+
+                animation="fadeInRight"
+                delay={200}
+                duration={700}
+              >
+                <Text style={styles.title}>
+                  Confirm your <Text style={{ color: Colors.btnColor }}>Secret Recovery Phrase</Text>
+                </Text>
+                <Text style={styles.subtitle}>
+                  Please select each phrase in order to make sure it is correct
+                </Text>
+
+              </Animatable.View>
+
+
+              <Animatable.View animation="zoomIn" delay={300} duration={1500}
+              >
+
+                <View style={[styles.gridContainer]}>
+                  <View style={styles.container1}>
+                    <View style={styles.grid1}>
+                      {fieldData.map((item, index) => {
+                        const fieldName = `input_${index}`;
+                        return (
+                          <View
+                            key={fieldName}
+                            style={[
+                              styles.inputContainer,
+                              !item.isActive && {
+                                borderColor: Colors.purple50,
+                              },
+                            ]}>
+                            <Text
+                              style={{
+                                color: Colors.gray70,
+                                fontWeight: Fonts.Weight.medium,
+                                fontSize: 13,
+                                paddingLeft: 6,
+                              }}>
+                              {index + 1}.
+                            </Text>
+                            <TextInput
+                              style={styles.input}
+                              value={capitalize(item.value)}
+                              editable={true}
+                              onChangeText={handleChange(fieldName)}
+                              onBlur={handleBlur(fieldName)}
+                              onKeyPress={({ nativeEvent }) => {
+                                if (nativeEvent.key === 'Enter') {
+                                  nativeEvent.preventDefault?.();
+                                }
+                              }}
+                            />
+                          </View>
+                        );
+                      })}
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      borderTopWidth: 1,
+                      borderColor: Colors.purple10,
+                      borderStyle: "dashed",
+                      marginBottom: 10,
+                    }}
+                  />
                   <View style={styles.grid1}>
-                    {fieldData.map((item, index) => {
+                    {confirmData.map((item, index) => {
                       const fieldName = `input_${index}`;
                       return (
-                        <View
+                        <TouchableOpacity
                           key={fieldName}
+                          disabled={item.isActive}
+                          onPress={() => handleWordClick(item)}
                           style={[
                             styles.inputContainer,
+                            {
+                              height: 42,
+                              cursor: 'pointer',
+                            },
                             !item.isActive && {
-                              borderColor: Colors.primarySecond,
+                              borderColor: Colors.purple50,
                             },
                           ]}>
                           <Text
-                            style={{
-                              color: Colors.gray70,
-                              fontWeight: Fonts.Weight.medium,
-                              fontSize: 13,
-                            }}>
-                            {index + 1}.
+                            style={[
+                              styles.input,
+                              {
+                                color: Colors.purple50,
+                                fontWeight: Fonts.Weight.medium,
+                                fontFamil: Fonts.type.montserratMedium,
+
+                                fontSize: 13,
+                                paddingLeft: 6
+                              },
+                              item.isActive && {
+                                color: Colors.gray60,
+                              },
+                            ]}>
+                            {capitalize(item.value)}
                           </Text>
-                          <TextInput
-                            style={styles.input}
-                            value={item.value}
-                            editable={true}
-                            onChangeText={handleChange(fieldName)}
-                            onBlur={handleBlur(fieldName)}
-                            onKeyPress={({nativeEvent}) => {
-                              if (nativeEvent.key === 'Enter') {
-                                nativeEvent.preventDefault?.();
-                              }
-                            }}
-                          />
-                        </View>
+                        </TouchableOpacity>
                       );
                     })}
                   </View>
                 </View>
-                <View
-                  style={{
-                    borderTopWidth: 1,
-                    borderColor: Colors.gray40,
-                    marginBottom: 10,
-                  }}
-                />
-                <View style={styles.grid1}>
-                  {confirmData.map((item, index) => {
-                    const fieldName = `input_${index}`;
-                    return (
-                      <TouchableOpacity
-                        key={fieldName}
-                        disabled={item.isActive}
-                        onPress={() => handleWordClick(item)}
-                        style={[
-                          styles.inputContainer,
-                          {
-                            height: 42,
-                            cursor: 'pointer',
-                          },
-                          !item.isActive && {
-                            borderColor: Colors.primarySecond,
-                          },
-                        ]}>
-                        <Text
-                          style={[
-                            styles.input,
-                            {
-                              color: Colors.primarySecond,
-                              fontWeight: Fonts.Weight.medium,
-                              fontSize: 13,
-                            },
-                            item.isActive && {
-                              color: Colors.gray60,
-                            },
-                          ]}>
-                          {item.key}. {item.value}
-                        </Text>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </View>
-              </View>
+              </Animatable.View>
             </View>
 
-            <CustomButton
-              title="Confirm"
-              disabled={allActive}
-              onPress={() => navigation.navigate('bottom-navigation')}
-            />
+
+            <Animatable.View animation="slideInUp" delay={1000} duration={1000}>
+              <CustomButton
+                title="Confirm"
+                disabled={allActive}
+                onPress={() => navigation.dispatch(CommonActions.reset({
+                  index: 0,
+                  routes: [{ name: 'bottom-navigation' }],
+                }))}
+              />
+
+            </Animatable.View>
+
           </View>
         )}
       </Formik>
@@ -236,18 +276,21 @@ const styles = StyleSheet.create({
     color: Colors.gray100,
     fontSize: Fonts.size.semi,
     fontWeight: Fonts.Weight.low,
+    fontFamil: Fonts.type.montserratMedium,
     marginBottom: 10,
   },
   title: {
     fontSize: Fonts.size.f24,
-    color: Colors.black100,
-    fontWeight: Fonts.Weight.bold,
+    color: Colors.black80,
+    fontWeight: Fonts.Weight.medium,
     marginVertical: 10,
+    fontFamily: Fonts.type.montserratMedium,
   },
   subtitle: {
     fontSize: Fonts.size.medium,
     fontWeight: Fonts.Weight.low,
-    color: Colors.black80,
+    color: Colors.gray100,
+    fontFamily: Fonts.type.montserratRegular,
     marginBottom: 0,
     lineHeight: 20,
   },

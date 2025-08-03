@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   ApplicationStyle,
   Colors,
@@ -7,7 +7,7 @@ import {
   verticalScale,
   width,
 } from '../../theme';
-import {height} from '../../theme/Matrics';
+import { height } from '../../theme/Matrics';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: verticalScale(50),
   },
-   stepText: {
+  stepText: {
     color: Colors.gray100,
     fontSize: Fonts.size.semi,
     fontWeight: Fonts.Weight.low,
@@ -37,15 +37,17 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(12),
     fontSize: Fonts.size.small,
     fontWeight: Fonts.Weight.medium,
-    color: Colors.black80,
+    color: Colors.gray100,
     paddingHorizontal: horizontalScale(10),
+    fontFamily: Fonts.type.montserratMedium,
+    textAlign: "center"
   },
-  
+
   termsText: {
-    color: Colors.custombBlue100,
+    color: Colors.btnColor,
   },
   privacyText: {
-    color: Colors.custombBlue100,
+    color: Colors.btnColor,
   },
   outerContainer: {
     flexDirection: 'column',
@@ -92,14 +94,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingBottom: verticalScale(20),
   },
-  otpView: {marginTop: verticalScale(30)},
+  otpView: { marginTop: verticalScale(30) },
   resendView: {
     paddingVertical: verticalScale(30),
     justifyContent: 'center',
   },
 
   inputOTP: {
-    fontSize: 24,
+    fontSize: Fonts.size.semi,
+    fontWeight: Fonts.Weight.medium,
+    fontFamily: Fonts.type.montserratMedium,
+    color:Colors.btnColor,
     borderRadius: 8,
     borderWidth: 1,
     borderBottomWidth: 1,
@@ -122,9 +127,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   passcodeText: {
-    color: Colors.black80,
+    color: Colors.btnColor,
     fontSize: Fonts.size.f20,
-    fontWeight: Fonts.Weight.medium,
+    fontWeight: Fonts.Weight.low,
+    paddingBottom: verticalScale(20),
+    fontFamily:Fonts.type.montserratMedium
   },
 });
 
