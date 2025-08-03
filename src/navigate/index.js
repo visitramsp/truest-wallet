@@ -86,7 +86,7 @@ export default function Index() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
- <Stack.Screen name="bottom-navigation" component={BottomNavigation} />
+
 
 
         {/* <Stack.Screen name="congratulation" component={Congratulation} /> */}
@@ -114,7 +114,7 @@ export default function Index() {
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="otp-screen" component={OtpScreen} />
         <Stack.Screen name="forget-password" component={ForgetPassword} />
-        {/* <Stack.Screen name="bottom-navigation" component={BottomNavigation} /> */}
+        <Stack.Screen name="bottom-navigation" component={BottomNavigation} />
 
         {/* bottom tab inner sub pages */}
         <Stack.Screen name="send" component={Send} />
