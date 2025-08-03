@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     borderColor: Colors.gray100,
   },
   accountTitle: {
-    color: Colors.black100,
+    color: Colors.black90,
     fontSize: Fonts.size.regular,
     fontWeight: Fonts.Weight.medium,
   },
@@ -105,9 +105,9 @@ export const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: Fonts.size.uprSemi,
-    fontFamily: Fonts.type.montserratRegular,
-    fontWeight: Fonts.Weight.bold,
-    color: Colors.gray90,
+    fontFamily: Fonts.type.montserratSemiBold,
+    fontWeight: Fonts.Weight.seven,
+    color: Colors.gray100,
     textAlign: 'center',
   },
   activeText: {

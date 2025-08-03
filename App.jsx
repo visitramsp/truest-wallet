@@ -17,7 +17,6 @@ import {
 } from 'react-native';
 
 import {
-  Colors,
   DebugInstructions,
   Header,
   LearnMoreLinks,
@@ -28,6 +27,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from './src/store/Store';
+import { Colors } from './src/theme';
 // import BootSplash from 'react-native-bootsplash';
 
 function App() {
@@ -51,8 +51,8 @@ function App() {
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text>Loading App...</Text>
+        <ActivityIndicator size="large" color={Colors.btnColor} />
+        <Text style={{color:Colors.gray80}}>Loading App...</Text>
       </View>
     );
   }
@@ -69,21 +69,15 @@ function App() {
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  container: {
+    flex: 1,
+    padding: 20,
   },
 });
 

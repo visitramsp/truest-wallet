@@ -212,7 +212,7 @@ export default function Send() {
           </ScrollView>
         </View>
 
-        <View style={styles.btnContainer}>
+        <Animatable.View key={`${animationKey}index}`} animation="slideInUp" delay={1000} duration={1000} style={styles.btnContainer}>
           <TouchableOpacity style={styles.continueBtn}>
             <Text style={{ color: Colors.btnColor, fontSize: 16, fontWeight: 'bold' }}>
               Cancel
@@ -221,7 +221,7 @@ export default function Send() {
           <TouchableOpacity style={styles.cancelBtn}>
             <Text style={{ color: '#fff', fontSize: 16 }}> Continue</Text>
           </TouchableOpacity>
-        </View>
+        </Animatable.View>
       </View>
 
       <ToAddress isModalVisible={isModalVisible} setFromAddress={setFromAddress} toggleModal={toggleModal} />
@@ -261,14 +261,14 @@ const ToAddress = ({ isModalVisible, toggleModal, setFromAddress }) => {
       balance: '$0.00',
       icon: 'wallet-outline',
     },
-    {
-      id: 5,
-      name: 'Account 5',
-      address: '0x0ceC8...d2A6c',
-      balance: '$0.00',
-      icon: 'wallet-outline',
-      tag: 'SRP #1',
-    },
+    // {
+    //   id: 5,
+    //   name: 'Account 5',
+    //   address: '0x0ceC8...d2A6c',
+    //   balance: '$0.00',
+    //   icon: 'wallet-outline',
+    //   tag: 'SRP #1',
+    // },
 
   ];
   return (
