@@ -13,12 +13,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { Colors } from '../../theme';
+import { Colors, Fonts } from '../../theme';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { height } from '../../theme/Matrics';
 import { mediaFile } from '../../assets';
 import Modal from 'react-native-modal';
 import * as Animatable from 'react-native-animatable';
+import { ColorProperties } from 'react-native-reanimated/lib/typescript/Colors';
 
 const buttons = [
   { label: 'Send', icon: 'arrow-up-right', bg: '#2c2c2e', link: 'send' },
@@ -300,9 +301,9 @@ const ToAddress = ({ isModalVisible, toggleModal, setFromAddress }) => {
         <Text
           style={{
             fontSize: 18,
-            fontWeight: 'bold',
-            // marginBottom: 16,
-            color: '#000',
+            fontWeight: Fonts.Weight.semi,
+            fontFamily:Fonts.type.montserratSemiBold,
+            color: Colors.btnColor,
           }}
         >
           Select Account

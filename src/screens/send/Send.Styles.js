@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
   accountTitle: {
     color: Colors.black90,
     fontSize: Fonts.size.regular,
-    fontWeight: Fonts.Weight.medium,
+    fontWeight: Fonts.Weight.low,
   },
   accountAddress: {color: Colors.gray100, fontSize: 13},
   inputBox: {
