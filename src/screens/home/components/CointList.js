@@ -36,7 +36,7 @@ const coinData = [
 
 const CoinCard = ({ coin, index, animationKey }) => (
 
-  <Animatable.View key={`${animationKey}-${index}`} animation={index % 2 === 0 ? 'slideInLeft' : 'slideInRight'} delay={700 + index * 200} duration={1000} style={styles.card}>
+  <Animatable.View key={`${animationKey}-${index}`} animation={index % 2 === 0 ? 'slideInLeft' : 'slideInRight'} delay={200 + index * 200} duration={1000} style={styles.card}>
     <View style={styles.left}>
       <Image source={coin.icon} style={styles.icon} />
       <View>

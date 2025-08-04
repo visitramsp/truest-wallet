@@ -140,7 +140,7 @@ const FirstTimeConfirmPhrase = () => {
                             <TextInput
                               style={styles.input}
                               value={capitalize(item.value)}
-                              editable={true}
+                              editable={false}
                               onChangeText={handleChange(fieldName)}
                               onBlur={handleBlur(fieldName)}
                               onKeyPress={({ nativeEvent }) => {
@@ -173,8 +173,9 @@ const FirstTimeConfirmPhrase = () => {
                           style={[
                             styles.inputContainer,
                             {
-                              height: 42,
+                              height: 50,
                               cursor: 'pointer',
+                              
                             },
                             !item.isActive && {
                               borderColor: Colors.purple50,
@@ -212,7 +213,7 @@ const FirstTimeConfirmPhrase = () => {
                 disabled={allActive}
                 onPress={() => navigation.dispatch(CommonActions.reset({
                   index: 0,
-                  routes: [{ name: 'bottom-navigation' }],
+                  routes: [{ name: 'congratulation' }],
                 }))}
               />
 
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: '30%',
-    marginVertical: 8,
+    marginVertical: 5,
     borderWidth: 1,
     borderColor: Colors.gray60,
     borderRadius: 6,
@@ -256,7 +257,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     paddingRight: 6,
-    color: Colors.gray70,
+    color: Colors.gray100,
     // backgroundColor: 'red',
   },
   buttonWrapper: {
@@ -273,7 +274,7 @@ const styles = StyleSheet.create({
     height: height - 150,
   },
   stepText: {
-    color: Colors.gray100,
+    color: Colors.black80,
     fontSize: Fonts.size.semi,
     fontWeight: Fonts.Weight.low,
     fontFamil: Fonts.type.montserratMedium,

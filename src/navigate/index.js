@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 import Signup from '../screens/auth/Signup';
 import ForgetPassword from '../screens/auth/ForgetPassword';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Shop from '../screens/shop/Shop';
@@ -12,7 +12,7 @@ import Favorites from '../screens/favorites/Favorites';
 import Profile from '../screens/profile/Profile';
 import HomeScreen from '../screens/home/Home';
 import Cart from '../screens/cart/Cart';
-import {Colors} from '../theme';
+import { Colors } from '../theme';
 import Login from '../screens/auth/login';
 import WelcomeScreen from '../screens/welcome/WelcomeScreen';
 import ChooseOption from '../screens/welcome/ChooseOption';
@@ -26,16 +26,16 @@ import firstTimeRecoveryPhase from '../screens/welcome/firstTimeRecoveryPhase/Fi
 import FirstTimeConfirmPhrase from '../screens/welcome/firstTimeRecoveryPhase/FirstTimeConfirmPhrase';
 import Send from '../screens/send/Send';
 import Receive from '../screens/receive/Receive';
-// import Congratulation from '../screens/congratulation/Congratulation';
+import Congratulation from '../screens/congratulation/Congratulation';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function BottomNavigation() {
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
+      screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarIcon: ({focused, color, size}) => {
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
           if (route.name === 'Home') iconName = 'home';
@@ -61,7 +61,7 @@ function BottomNavigation() {
         },
         tabBarActiveTintColor: Colors.btnColor,
         tabBarInactiveTintColor: Colors.gray100,
-        tabBarLabelStyle: {fontSize: 12},
+        tabBarLabelStyle: { fontSize: 12 },
         tabBarStyle: {
           height: 70,
           paddingBottom: 10,
@@ -70,7 +70,7 @@ function BottomNavigation() {
           // borderTopRightRadius: 20,
           position: 'absolute',
           backgroundColor: Colors.white80,
-          
+
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
@@ -86,11 +86,11 @@ function BottomNavigation() {
 export default function Index() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
 
 
 
-        {/* <Stack.Screen name="congratulation" component={Congratulation} /> */}
+
         <Stack.Screen name="welcome" component={WelcomeScreen} />
         <Stack.Screen
           name="welcome-second-screen"
@@ -119,7 +119,8 @@ export default function Index() {
 
         {/* bottom tab inner sub pages */}
         <Stack.Screen name="send" component={Send} />
-         <Stack.Screen name="receive" component={Receive} />
+        <Stack.Screen name="receive" component={Receive} />
+        <Stack.Screen name="congratulation" component={Congratulation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

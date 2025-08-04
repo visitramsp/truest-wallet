@@ -52,7 +52,7 @@ function App() {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={Colors.btnColor} />
-        <Text style={{color:Colors.gray80}}>Loading App...</Text>
+        <Text style={{color:Colors.gray80,marginTop:5}}>Loading App...</Text>
       </View>
     );
   }

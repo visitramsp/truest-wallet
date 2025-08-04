@@ -1,113 +1,143 @@
-// import React from 'react';
-// import {
-//   View,
-//   Text,
-//   StyleSheet,
-//   Image,
-//   TouchableOpacity,
-//   Dimensions,
-// } from 'react-native';
-// import FastImage from 'react-native-fast-image';
-// // import LinearGradient from 'react-native-linear-gradient';
+import React from 'react';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Dimensions,
+} from 'react-native';
+import LottieView from 'lottie-react-native';
+import * as Animatable from 'react-native-animatable';
+import { Colors, horizontalScale, verticalScale } from '../../theme';
+import { mediaFile } from '../../assets';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 
-// const { width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
-// export default function Congratulation() {
-//   return (
-//     <View style={styles.container}>
-//       {/* Top MetaMask Logo */}
-//       <View style={styles.logoContainer}>
-//         <FastImage
-//           source={{
-//             uri: 'https://raw.githubusercontent.com/MetaMask/brand-resources/master/png/metamask-fox.png',
-//           }}
-//           style={styles.logo}
-//           resizeMode="contain"
-//         />
-//       </View>
+export default function Congratulation() {
+    const navigation=useNavigation()
+    return (
+        <View style={styles.container}>
+            <LottieView
+                source={mediaFile.congratulation3}
+                autoPlay
+                loop
+                style={styles.backgroundAnimation}
+            />
 
-//       {/* Fox Emoji Image */}
-//       <FastImage
-//         source={{ uri: 'https://emojiisland.com/cdn/shop/products/Fox_Emoji_large.png' }}
-//         style={styles.fox}
-//         resizeMode="contain"
-//       />
 
-//       {/* Text Box */}
-//       <View style={styles.bottomContainer}>
-//         <Image
-//         source={{ uri: 'https://raw.githubusercontent.com/MetaMask/brand-resources/master/png/metamask-fox.png',}}
-//         style={styles.fox}
-//         resizeMode="contain"
-//       />
-//         <Text style={styles.heading}>MetaMask ll</Text>
-//         <Text style={styles.description}>
-//           By connecting your wallet, you agree to our Terms of Service and our Privacy Policy.
-//         </Text>
+            <Animatable.View animation="zoomIn" delay={500} duration={1500}>
+                <LottieView
+                    source={mediaFile.congratulation2}
+                    autoPlay
+                    loop
+                    style={styles.foregroundAnimation}
+                />
+            </Animatable.View>
+            <Animatable.View animation="zoomIn" delay={1000} duration={500} style={styles.card}>
+                <LottieView
+                    source={mediaFile.congratulation4}
+                    autoPlay
+                    loop
+                    style={styles.cardBackgroundAnimation}
+                />
+                <Text style={styles.heading}>🎉 Wallet Connected!</Text>
+                <Text style={styles.description}>
+                    By connecting your wallet, you agree to our{' '}
+                    <Text style={styles.link}>Terms of Service</Text> and{' '}
+                    <Text style={styles.link}>Privacy Policy</Text>.
+                </Text>
 
-//         <TouchableOpacity style={styles.button}>
-//           <Text style={styles.buttonText}>Create Wallet</Text>
-//         </TouchableOpacity>
-//       </View>
-//     </View>
-//   );
-// }
+                <TouchableOpacity
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     justifyContent: 'flex-start',
-//     paddingTop: 50,
-//     backgroundColor: '#fdfdfd', // fallback background
-//   },
-//   logoContainer: {
-//     marginBottom: 20,
-//   },
-//   logo: {
-//     height: 40,
-//     width: 100,
-//   },
-//   fox: {
-//     height: 180,
-//     width: 180,
-//     marginVertical: 30,
-//   },
-//   bottomContainer: {
-//     backgroundColor: '#fff',
-//     width: width - 40,
-//     borderRadius: 20,
-//     padding: 24,
-//     alignItems: 'center',
-//     elevation: 4,
-//     shadowColor: '#000',
-//     shadowOpacity: 0.1,
-//     shadowRadius: 10,
-//     shadowOffset: { width: 0, height: 5 },
-//   },
-//   heading: {
-//     fontSize: 24,
-//     fontWeight: '700',
-//     marginBottom: 12,
-//     color: '#000',
-//   },
-//   description: {
-//     textAlign: 'center',
-//     color: '#555',
-//     fontSize: 14,
-//     marginBottom: 20,
-//   },
-//   button: {
-//     backgroundColor: '#ff7b7b',
-//     paddingVertical: 12,
-//     paddingHorizontal: 32,
-//     borderRadius: 30,
-//     width: '100%',
-//   },
-//   buttonText: {
-//     color: '#fff',
-//     fontWeight: '600',
-//     fontSize: 16,
-//     textAlign: 'center',
-//   },
-// });
+                    onPress={() => navigation.dispatch(CommonActions.reset({
+                        index: 0,
+                        routes: [{ name: 'bottom-navigation' }],
+                    }))}
+                    style={styles.button}>
+                    <Text style={styles.buttonText}>Continue</Text>
+                </TouchableOpacity>
+            </Animatable.View>
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fdfdfd',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+    },
+    backgroundAnimation: {
+        position: 'absolute',
+        width: width,
+        height: verticalScale(400),
+        top: 90,
+    },
+    foregroundAnimation: {
+        width: horizontalScale(320),
+        height: verticalScale(320),
+        marginBottom: verticalScale(20),
+        zIndex: 999,
+    },
+    card: {
+        backgroundColor: '#fff',
+        width: width - 40,
+        borderRadius: 20,
+        paddingVertical: verticalScale(40),
+        paddingHorizontal: horizontalScale(20),
+        alignItems: 'center',
+        elevation: 5,
+        shadowColor: '#ccc',
+        shadowOpacity: 0.1,
+        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 6 },
+        marginTop: verticalScale(50)
+        // position: 'relative',
+        // overflow: 'hidden',
+    },
+    cardBackgroundAnimation: {
+        position: 'absolute',
+        width: horizontalScale(400),
+        height: verticalScale(400),
+        top: -30,
+        left: -20,
+        zIndex: 30,
+        opacity: 1,
+    },
+    heading: {
+        fontSize: 26,
+        fontWeight: '800',
+        color: '#222',
+        textAlign: 'center',
+        marginBottom: 12,
+    },
+    description: {
+        textAlign: 'center',
+        color: '#555',
+        fontSize: 14.5,
+        lineHeight: 22,
+        marginBottom: 24,
+    },
+    link: {
+        color: Colors.purple100,
+        fontWeight: '600',
+    },
+    button: {
+        backgroundColor: Colors.purple100,
+        paddingVertical: 14,
+        paddingHorizontal: 36,
+        borderRadius: 30,
+        width: '100%',
+        zIndex: 999,
+
+    },
+    buttonText: {
+        color: '#fff',
+        fontWeight: '700',
+        fontSize: 16,
+        textAlign: 'center',
+    },
+});

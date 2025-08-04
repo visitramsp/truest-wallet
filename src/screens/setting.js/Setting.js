@@ -49,7 +49,7 @@ export default function Settings() {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {settingsItems.map((item, index) => (
-          <Animatable.View  key={`${animationKey}-${index}`}  animation={index % 2 === 0 ? 'slideInLeft' : 'slideInRight'} delay={500 + index * 200} duration={1000}  style={styles.item}>
+          <Animatable.View  key={`${animationKey}-${index}`}  animation={index % 2 === 0 ? 'slideInLeft' : 'slideInRight'} delay={200 + index * 200} duration={1000}  style={styles.item}>
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.title}</Text>
               <Text style={styles.subtitle}>{item.subtitle}</Text>
@@ -61,6 +61,7 @@ export default function Settings() {
     </View>
   );
 }
+
 
 
 const styles = StyleSheet.create({
