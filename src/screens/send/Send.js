@@ -12,6 +12,7 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { Colors, Fonts } from '../../theme';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
@@ -80,9 +81,10 @@ export default function Send() {
             alignItems: 'center',
             justifyContent: 'space-between',
             marginBottom: 20,
+            marginTop:4
           }}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon name="arrow-left" size={24} color={Colors.purple50} />
+            <FontAwesome6 name="arrow-left" size={24} color={Colors.purple100} />
           </TouchableOpacity>
           <Text
             style={{

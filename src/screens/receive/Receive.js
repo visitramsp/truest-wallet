@@ -3,7 +3,7 @@ import { Alert, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import MainLayout from '../../components/layout/Layout'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { Colors } from '../../theme'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { styles } from './Receive.Styles'
@@ -28,9 +28,10 @@ export default function Receive() {
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         marginBottom: 20,
+                        marginTop:10
                     }}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <Icon name="arrow-left" size={24} color={Colors.purple50} />
+                         <FontAwesome6 name="arrow-left" size={24} color={Colors.purple100} />
                     </TouchableOpacity>
                     <Text
                         style={{
