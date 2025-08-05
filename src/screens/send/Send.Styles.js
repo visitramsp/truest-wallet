@@ -21,14 +21,14 @@ export const styles = StyleSheet.create({
     padding: 14,
     ...ApplicationStyle.rowAlignCenterJustifyBetween,
     borderWidth: 1,
-    borderColor: Colors.gray100,
+    borderColor: Colors.gray90,
   },
   accountTitle: {
-    color: Colors.black90,
+    color: Colors.white80,
     fontSize: Fonts.size.regular,
     fontWeight: Fonts.Weight.low,
   },
-  accountAddress: {color: Colors.gray100, fontSize: 13},
+  accountAddress: {color: Colors.btnColor, fontSize: 13},
   inputBox: {
     borderWidth: 1,
     borderColor: Colors.gray100,
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     paddingHorizontal: 14,
-    height: 50,
+    height: 76,
     overflow: 'hidden',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -52,14 +52,14 @@ export const styles = StyleSheet.create({
     borderBottomColor: 'transparent',
   },
   accountList: {
-    borderBottomWidth: 1,
-    borderColor: Colors.gray50,
+    // borderBottomWidth: 1,
+    // borderColor: Colors.gray50,
     padding: 14,
     marginVertical: 6,
     borderRadius: 10,
     ...ApplicationStyle.rowJustifyBetween,
   },
-  balance: {color: Colors.black100, fontSize: 15},
+  balance: {color: Colors.gray80, fontSize: 15},
   tag: {color: Colors.blue80, fontSize: 12, marginTop: 2},
   btnContainer: {
     ...ApplicationStyle.rowJustifyBetween,
@@ -88,20 +88,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     borderBottomWidth: 1,
     paddingBottom: verticalScale(5),
-    borderColor: Colors.gray50,
+    borderColor: Colors.black70,
     position: 'relative',
     marginTop: verticalScale(20),
   },
   tabView: {
     paddingBottom: verticalScale(5),
-
     position: 'relative',
     top: 5,
-    width: width - horizontalScale(210),
+    width: width - horizontalScale(200),
   },
   activeTab: {
     borderBottomWidth: 1,
-    borderColor: Colors.blue100,
+    borderColor: Colors.gray50,
   },
   tabText: {
     fontSize: Fonts.size.uprSemi,
@@ -111,6 +110,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   activeText: {
-    color: Colors.blue100,
+    color: Colors.white80,
   },
 });

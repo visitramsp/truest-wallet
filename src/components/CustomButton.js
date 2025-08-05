@@ -27,16 +27,16 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   btnText: {
-    color: Colors.white80,
+    color: Colors.bgColor,
     textAlign: 'center',
     fontSize: Fonts.size.regular,
     fontWeight: Fonts.Weight.medium,
     fontFamily: Fonts.type.montserratSemiBold
   },
   disableBtn: {
-    backgroundColor: Colors.purple50,
+    backgroundColor: Colors.gray100,
   },
   disableText: {
-    color: Colors.gray60,
+    color: Colors.gray70,
   }
 });

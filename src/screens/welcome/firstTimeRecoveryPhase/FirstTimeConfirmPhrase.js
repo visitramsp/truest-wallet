@@ -102,7 +102,7 @@ const FirstTimeConfirmPhrase = () => {
                 duration={700}
               >
                 <Text style={styles.title}>
-                  Confirm your <Text style={{ color: Colors.btnColor }}>Secret Recovery Phrase</Text>
+                  Confirm your Secret Recovery Phrase
                 </Text>
                 <Text style={styles.subtitle}>
                   Please select each phrase in order to make sure it is correct
@@ -125,7 +125,7 @@ const FirstTimeConfirmPhrase = () => {
                             style={[
                               styles.inputContainer,
                               !item.isActive && {
-                                borderColor: Colors.purple50,
+                                borderColor: Colors.btnColor,
                               },
                             ]}>
                             <Text
@@ -178,14 +178,14 @@ const FirstTimeConfirmPhrase = () => {
                               
                             },
                             !item.isActive && {
-                              borderColor: Colors.purple50,
+                              borderColor: Colors.btnColor,
                             },
                           ]}>
                           <Text
                             style={[
                               styles.input,
                               {
-                                color: Colors.purple50,
+                                color: Colors.btnColor,
                                 fontWeight: Fonts.Weight.medium,
                                 fontFamil: Fonts.type.montserratMedium,
 
@@ -193,7 +193,7 @@ const FirstTimeConfirmPhrase = () => {
                                 paddingLeft: 6
                               },
                               item.isActive && {
-                                color: Colors.gray60,
+                                color: Colors.gray100,
                               },
                             ]}>
                             {capitalize(item.value)}
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
     width: '30%',
     marginVertical: 5,
     borderWidth: 1,
-    borderColor: Colors.gray60,
+    borderColor: Colors.gray100,
     borderRadius: 6,
     padding: 0,
     paddingHorizontal: 3,
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     height: height - 150,
   },
   stepText: {
-    color: Colors.black80,
+    color: Colors.gray40,
     fontSize: Fonts.size.semi,
     fontWeight: Fonts.Weight.low,
     fontFamil: Fonts.type.montserratMedium,
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: Fonts.size.f24,
-    color: Colors.black80,
+    color: Colors.gray50,
     fontWeight: Fonts.Weight.medium,
     marginVertical: 10,
     fontFamily: Fonts.type.montserratMedium,
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: Fonts.size.medium,
     fontWeight: Fonts.Weight.low,
-    color: Colors.gray100,
+    color: Colors.gray80,
     fontFamily: Fonts.type.montserratRegular,
     marginBottom: 0,
     lineHeight: 20,

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     gap: verticalScale(50),
   },
   stepText: {
-    color: Colors.gray100,
+    color: Colors.gray40,
     fontSize: Fonts.size.semi,
     fontWeight: Fonts.Weight.low,
     marginBottom: 10,
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   gif: {
     width: width + 80,
     height: height - 500,
+    opacity:0.9
   },
   mainTitle: {
     textAlign: 'center',

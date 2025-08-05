@@ -8,7 +8,7 @@ const MainLayout = ({ children, style, scrollable = true }) => {
   return (
     // <ImageBackground source={AppIcon.universalUI} style={[styles.safeArea]}>
       <SafeAreaView style={styles.safeArea}>
-        <StatusBar backgroundColor="transparent" translucent barStyle="dark-content" />
+        <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
         {scrollable ? (
           <ScrollView
             showsVerticalScrollIndicator={false}

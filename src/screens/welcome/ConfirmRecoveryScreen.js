@@ -102,7 +102,7 @@ const ConfirmRecoveryScreen = () => {
                 duration={700}
               >
                 <Text style={styles.title}>
-                  Confirm your <Text style={{ color: Colors.btnColor }}>Secret Recovery Phrase</Text>
+                  Confirm your Secret Recovery Phrase
                 </Text>
                 <Text style={styles.subtitle}>
                   Please select each phrase in order to make sure it is correct
@@ -125,7 +125,7 @@ const ConfirmRecoveryScreen = () => {
                             style={[
                               styles.inputContainer,
                               !item.isActive && {
-                                borderColor: Colors.purple50,
+                                borderColor: Colors.btnColor,
                               },
                             ]}>
                             <Text
@@ -140,7 +140,7 @@ const ConfirmRecoveryScreen = () => {
                             <TextInput
                               style={styles.input}
                               value={capitalize(item.value)}
-                              editable={true}
+                              editable={false}
                               onChangeText={handleChange(fieldName)}
                               onBlur={handleBlur(fieldName)}
                               onKeyPress={({ nativeEvent }) => {
@@ -173,18 +173,19 @@ const ConfirmRecoveryScreen = () => {
                           style={[
                             styles.inputContainer,
                             {
-                              height: 42,
+                              height: 50,
                               cursor: 'pointer',
+                              
                             },
                             !item.isActive && {
-                              borderColor: Colors.purple50,
+                              borderColor: Colors.btnColor,
                             },
                           ]}>
                           <Text
                             style={[
                               styles.input,
                               {
-                                color: Colors.purple50,
+                                color: Colors.btnColor,
                                 fontWeight: Fonts.Weight.medium,
                                 fontFamil: Fonts.type.montserratMedium,
 
@@ -192,7 +193,7 @@ const ConfirmRecoveryScreen = () => {
                                 paddingLeft: 6
                               },
                               item.isActive && {
-                                color: Colors.gray60,
+                                color: Colors.gray100,
                               },
                             ]}>
                             {capitalize(item.value)}
@@ -212,7 +213,7 @@ const ConfirmRecoveryScreen = () => {
                 disabled={allActive}
                 onPress={() => navigation.dispatch(CommonActions.reset({
                   index: 0,
-                  routes: [{ name: 'bottom-navigation' }],
+                  routes: [{ name: 'congratulation' }],
                 }))}
               />
 
@@ -244,9 +245,9 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: '30%',
-    marginVertical: 8,
+    marginVertical: 5,
     borderWidth: 1,
-    borderColor: Colors.gray60,
+    borderColor: Colors.gray100,
     borderRadius: 6,
     padding: 0,
     paddingHorizontal: 3,
@@ -256,7 +257,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     paddingRight: 6,
-    color: Colors.gray70,
+    color: Colors.gray100,
     // backgroundColor: 'red',
   },
   buttonWrapper: {
@@ -273,7 +274,7 @@ const styles = StyleSheet.create({
     height: height - 150,
   },
   stepText: {
-    color: Colors.gray100,
+    color: Colors.gray40,
     fontSize: Fonts.size.semi,
     fontWeight: Fonts.Weight.low,
     fontFamil: Fonts.type.montserratMedium,
@@ -281,7 +282,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: Fonts.size.f24,
-    color: Colors.black80,
+    color: Colors.gray50,
     fontWeight: Fonts.Weight.medium,
     marginVertical: 10,
     fontFamily: Fonts.type.montserratMedium,
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: Fonts.size.medium,
     fontWeight: Fonts.Weight.low,
-    color: Colors.gray100,
+    color: Colors.gray80,
     fontFamily: Fonts.type.montserratRegular,
     marginBottom: 0,
     lineHeight: 20,

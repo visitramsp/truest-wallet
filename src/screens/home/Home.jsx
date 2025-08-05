@@ -18,11 +18,12 @@ import CointList from './components/CointList';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Icon from 'react-native-vector-icons/Feather';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 const buttons = [
-  { label: 'Send', icon: 'arrow-up-right', bg: "#00ff8b", link: "send" },
-  { label: 'Receive', icon: 'arrow-down-left', bg: "#F75454", link: "receive" },
+  { label: 'Send', icon: 'arrow-up', bg: "#D6F736", link: "send" },
+  { label: 'Receive', icon: 'arrow-down', bg: "#D6F736", link: "receive" },
 ];
 
 export default function HomeScreen() {
@@ -43,10 +44,7 @@ export default function HomeScreen() {
     <>
       <StatusBar backgroundColor="transparent" translucent barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}>
+        <View >
           <View style={styles.topContainer}>
             <MaterialIcons
               name={"qr-code-scanner"}
@@ -57,7 +55,7 @@ export default function HomeScreen() {
             <Octicons
               name={"filter"}
               size={20}
-              color={Colors.black100}
+              color={Colors.gray40}
             />
 
           </View>
@@ -77,10 +75,10 @@ export default function HomeScreen() {
               {buttons.map((btn, index) => (
                 <TouchableOpacity onPress={() => navigation.navigate(btn.link)} key={index} style={styles.buttonContainer}>
                   <View style={[styles.iconWrapper, { backgroundColor: btn.bg }]}>
-                    <Icon
+                    <FontAwesome6
                       name={btn.icon}
-                      size={27}
-                      color={btn.label === 'Send' ? '#fff' : '#fff'}
+                      size={22}
+                      color={btn.label === 'Send' ? Colors.bgColor : Colors.bgColor}
                     />
                   </View>
                   <Text style={styles.label}>{btn.label}</Text>
@@ -111,7 +109,7 @@ export default function HomeScreen() {
           {
             currentTab === 0 ? <CointList /> : <Text style={{ paddingHorizontal: verticalScale(20), fontSize: 20, fontWeight: "bold", textAlign: "center", color: "red" }}>No Activity</Text>
           }
-        </ScrollView>
+        </View>
       </SafeAreaView>
     </>
   );

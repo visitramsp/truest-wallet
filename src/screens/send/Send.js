@@ -12,7 +12,7 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { Colors, Fonts } from '../../theme';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
@@ -50,6 +50,7 @@ export default function Send() {
       address: '0x74516...25518',
       balance: '$0.00',
       icon: 'wallet-outline',
+      tag: 'SRP #2',
     },
   ]);
   const [currentTab, setCurrentTab] = useState(0)
@@ -81,21 +82,21 @@ export default function Send() {
             alignItems: 'center',
             justifyContent: 'space-between',
             marginBottom: 20,
-            marginTop:4
+            marginTop: 4
           }}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <FontAwesome6 name="arrow-left" size={24} color={Colors.purple100} />
+            <MaterialIcons name="keyboard-arrow-left" size={40} color={Colors.gray100} />
           </TouchableOpacity>
           <Text
             style={{
-              color: Colors.black100,
+              color: Colors.white80,
               fontSize: 20,
               fontWeight: 'bold',
               marginLeft: 16,
             }}>
             Send
           </Text>
-          <View style={{ width: 20 }} />
+          <View style={{ width: 50 }} />
         </View>
         <View
           style={[
@@ -105,7 +106,7 @@ export default function Send() {
               height: height - 180,
             },
           ]}>
-          <Text style={{ color: Colors.gray100, fontSize: 14, marginBottom: 6 }}>
+          <Text style={{ color: Colors.gray40, fontSize: 14, marginBottom: 6 }}>
             From
           </Text>
           <Pressable onPress={toggleModal} style={styles.accountBox}>
@@ -121,7 +122,7 @@ export default function Send() {
 
           <Text
             style={{
-              color: Colors.gray100,
+              color: Colors.gray40,
               fontSize: 14,
               marginTop: 16,
               marginBottom: 6,
@@ -136,10 +137,16 @@ export default function Send() {
                   style={{ height: 30, width: 30 }}
                 />
               }
-              <Text style={{ color: Colors.gray100 }}>
+              <View >
+                {toAddress?.name && <Text style={{ color: Colors.white80,fontSize:17 }}>
+
+                {toAddress.name}
+              </Text>}
+              <Text style={[{ color: Colors.gray100 }, toAddress.address && {color: Colors.btnColor}]}>
 
                 {toAddress.address ? toAddress.address : 'Enter public address (0x) or domain name'}
               </Text>
+              </View>
             </View>
 
             {
@@ -217,12 +224,12 @@ export default function Send() {
 
         <Animatable.View key={`${animationKey}index}`} animation="slideInUp" delay={1000} duration={1000} style={styles.btnContainer}>
           <TouchableOpacity style={styles.continueBtn}>
-            <Text style={{ color: Colors.btnColor, fontSize: 16, fontWeight: 'bold' }}>
+            <Text style={{ color: Colors.btnColor, fontSize: 16, fontWeight: Fonts.Weight.bold,fontFamily:Fonts.type.montserratBold }}>
               Cancel
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.cancelBtn}>
-            <Text style={{ color: '#fff', fontSize: 16 }}> Continue</Text>
+            <Text style={{ color: Colors.bgColor, fontSize: 16,fontWeight: Fonts.Weight.bold,fontFamily:Fonts.type.montserratBold }}> Continue</Text>
           </TouchableOpacity>
         </Animatable.View>
       </View>
@@ -282,11 +289,14 @@ const ToAddress = ({ isModalVisible, toggleModal, setFromAddress }) => {
     >
       <View
         style={{
-          backgroundColor: 'white',
+          backgroundColor: '#302424ff',
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
           padding: 16,
           height: '60%',
+          opacity:0.9
+          // borderTopColor:Colors.gray100,
+          // borderWidth:1
         }}
       >
         <View style={{ alignItems: 'center', marginBottom: 10 }}>
@@ -304,11 +314,11 @@ const ToAddress = ({ isModalVisible, toggleModal, setFromAddress }) => {
           style={{
             fontSize: 18,
             fontWeight: Fonts.Weight.semi,
-            fontFamily:Fonts.type.montserratSemiBold,
-            color: Colors.btnColor,
+            fontFamily: Fonts.type.montserratSemiBold,
+            color: Colors.gray40,
           }}
         >
-          Select Account
+          Select Account 
         </Text>
 
         <ScrollView>

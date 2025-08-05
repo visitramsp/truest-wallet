@@ -15,7 +15,7 @@ import { CommonActions, useNavigation } from '@react-navigation/native';
 const { width } = Dimensions.get('window');
 
 export default function Congratulation() {
-    const navigation=useNavigation()
+    const navigation = useNavigation()
     return (
         <View style={styles.container}>
             <LottieView
@@ -65,7 +65,7 @@ export default function Congratulation() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fdfdfd',
+        backgroundColor: Colors.bgColor,
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 20,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         zIndex: 999,
     },
     card: {
-        backgroundColor: '#fff',
+        backgroundColor: Colors.black70,
         width: width - 40,
         borderRadius: 20,
         paddingVertical: verticalScale(40),
@@ -110,13 +110,13 @@ const styles = StyleSheet.create({
     heading: {
         fontSize: 26,
         fontWeight: '800',
-        color: '#222',
+        color: Colors.white80,
         textAlign: 'center',
         marginBottom: 12,
     },
     description: {
         textAlign: 'center',
-        color: '#555',
+        color: Colors.gray40,
         fontSize: 14.5,
         lineHeight: 22,
         marginBottom: 24,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
 
     },
     buttonText: {
-        color: '#fff',
+        color: Colors.bgColor,
         fontWeight: '700',
         fontSize: 16,
         textAlign: 'center',

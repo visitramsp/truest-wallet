@@ -35,8 +35,8 @@ export const styles = StyleSheet.create({
 
 
   container1: {
-    backgroundColor: '#fff',
-    height: '120%',
+    backgroundColor: "transparent",
+    height: '110%',
     flexDirection: "column",
     alignSelf: "center",
     alignItems: 'center',

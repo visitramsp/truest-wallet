@@ -3,7 +3,7 @@ import { Alert, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import MainLayout from '../../components/layout/Layout'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { Colors } from '../../theme'
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { styles } from './Receive.Styles'
@@ -31,18 +31,18 @@ export default function Receive() {
                         marginTop:10
                     }}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
-                         <FontAwesome6 name="arrow-left" size={24} color={Colors.purple100} />
+                         <MaterialIcons name="keyboard-arrow-left" size={40} color={Colors.gray100} />
                     </TouchableOpacity>
                     <Text
                         style={{
-                            color: Colors.black100,
+                            color: Colors.white80,
                             fontSize: 20,
                             fontWeight: 'bold',
                             marginLeft: 16,
                         }}>
                         Receive
                     </Text>
-                    <View style={{ width: 20 }} />
+                    <View style={{ width: 50 }} />
 
                 </View>
 
@@ -71,10 +71,10 @@ export default function Receive() {
                                 }
                             }}
                         >
-                            <FontAwesome5 name="copy" size={20} color="#c272ff" />
+                            <FontAwesome5 name="copy" size={20} color={Colors.btnColor} />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.iconButton}>
-                            <EvilIcons name="share-google" size={29} color={Colors.gray70} />
+                            <EvilIcons name="share-google" size={29} color={Colors.bgColor} />
                         </TouchableOpacity>
                     </View>
 

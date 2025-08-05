@@ -47,7 +47,7 @@ export default function Settings() {
     <View style={styles.container}>
       <Text style={styles.header}>Settings</Text>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.listContainer} showsVerticalScrollIndicator={false}>
         {settingsItems.map((item, index) => (
           <Animatable.View  key={`${animationKey}-${index}`}  animation={index % 2 === 0 ? 'slideInLeft' : 'slideInRight'} delay={200 + index * 200} duration={1000}  style={styles.item}>
             <View style={styles.textContainer}>
@@ -57,7 +57,7 @@ export default function Settings() {
             <Icon name="chevron-right" size={22} color="#ccc" />
           </Animatable.View>
         ))}
-      </ScrollView>
+      </View>
     </View>
   );
 }
@@ -67,7 +67,7 @@ export default function Settings() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.bgColor,
     paddingHorizontal: 20,
     paddingTop: 50,
   },
@@ -75,16 +75,24 @@ const styles = StyleSheet.create({
     fontSize: Fonts.size.f22,
     fontWeight: Fonts.Weight.medium,
     fonntFamily:Fonts.type.montserratSemiBold,
-    color: Colors.btnColor,
+    color: Colors.white80,
     marginBottom: 24,
+  },
+  listContainer:{
+    flexDirection:"column",
+    display:"flex",
+    gap:12
   },
   item: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 18,
+    paddingVertical: 10,
+    // paddingHorizontal: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: Colors.black70,
+    // backgroundColor:Colors.black70,
+    borderRadius:8
   },
   textContainer: {
     flex: 1,
@@ -94,13 +102,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
    fontWeight:Fonts.Weight.semi,
     fonntFamily:Fonts.type.montserratMedium,
-    color: Colors.black100,
+    color: Colors.gray70,
     marginBottom: 4,
   },
   subtitle: {
     fontSize: Fonts.size.small,
     fontWeight:Fonts.Weight.low,
     fonntFamily:Fonts.type.montserratMedium,
-    color: Colors.gray70,
+    color: Colors.gray90,
   },
 });

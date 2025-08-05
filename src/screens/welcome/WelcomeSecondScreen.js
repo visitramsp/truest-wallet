@@ -28,7 +28,7 @@ export default function WelcomeSecondScreen() {
           />
           <CustomButton
             style={{marginTop: 15, backgroundColor: Colors.gray60}}
-            btnColor={{color: "#B455FA"}}
+            btnColor={{color: Colors.gray90}}
             onPress={() => navigation.navigate('otp-screen', {isFirst: false})}
             title="I already have a wallet"
           />

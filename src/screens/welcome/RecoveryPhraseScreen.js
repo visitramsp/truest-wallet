@@ -63,7 +63,7 @@ const RecoveryPhraseScreen = () => {
                 delay={200}
                 duration={700}
               >
-                <Text style={styles.title}>Save your <Text style={{ color: Colors.btnColor }}>Secret Recovery Phrase</Text></Text>
+                <Text style={styles.title}>Save your Secret Recovery Phrase</Text>
                 <Text style={styles.subtitle}>
                   This is your{' '}
                   <Text style={styles.highlight}>Secret Recovery Phrase</Text>.
@@ -76,7 +76,7 @@ const RecoveryPhraseScreen = () => {
               <Animatable.View animation="zoomIn" delay={300} duration={1500}
                 style={[
                   styles.grid,
-                  !isView && { backgroundColor: Colors.gray80, borderRadius: 15 },
+                  !isView && { backgroundColor: Colors.gray90, borderRadius: 15 },
                 ]}>
                 {!isView && (
                   <TouchableOpacity
@@ -90,7 +90,7 @@ const RecoveryPhraseScreen = () => {
                     <Entypo
                       name={'eye-with-line'}
                       size={40}
-                      color={Colors.purple50}
+                      color={Colors.blue80}
                     />
                   </TouchableOpacity>
                 )}
@@ -100,18 +100,18 @@ const RecoveryPhraseScreen = () => {
                     {fields.map((_, index) => {
                       const fieldName = `input_${index}`;
                       return (
-                        <View key={fieldName} style={[styles.inputContainer, !isView && { borderColor: Colors.gray70 }]}>
+                        <View key={fieldName} style={[styles.inputContainer, !isView && { borderColor: Colors.gray950 }]}>
                           <Text
                             style={[{
-                              color: Colors.gray100,
+                              color: Colors.gray40,
                               fontWeight: Fonts.Weight.medium,
                               fontSize: 13,
-                            }, !isView && { color: Colors.gray70 }]}>
+                            }, !isView && { color: Colors.gray950 }]}>
                             {index + 1}.
                           </Text>
                           <TextInput
                           editable={isView}
-                            style={[styles.input, !isView && { color: Colors.gray70 }]}
+                            style={[styles.input, !isView && { color: Colors.gray950 }]}
                             value={values[fieldName]}
                             onChangeText={handleChange(fieldName)}
                             onBlur={handleBlur(fieldName)}
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     paddingRight: 6,
-    color: Colors.gray100,
+    color: Colors.gray40,
     fontWeight:Fonts.Weight.medium,
     fontFamily:Fonts.type.montserratMedium,
     paddingBottom:9
@@ -188,14 +188,14 @@ const styles = StyleSheet.create({
     height: height - 150,
   },
   stepText: {
-    color: Colors.gray100,
+    color: Colors.gray40,
     fontSize: Fonts.size.semi,
     fontWeight: Fonts.Weight.low,
     marginBottom: 10,
   },
   title: {
     fontSize: Fonts.size.f24,
-    color: Colors.black80,
+    color: Colors.gray50,
     fontWeight: Fonts.Weight.medium,
     marginVertical: 10,
     fontFamily: Fonts.type.montserratMedium,
@@ -204,12 +204,12 @@ const styles = StyleSheet.create({
     fontSize: Fonts.size.medium,
     fontWeight: Fonts.Weight.low,
     fontFamily: Fonts.type.montserratRegular,
-    color: Colors.gray100,
+    color: Colors.gray80,
     marginBottom: 25,
     lineHeight: 20,
   },
   highlight: {
-    color: Colors.gray100,
+    color: Colors.btnColor,
     fontWeight: 'bold',
   },
   grid: {

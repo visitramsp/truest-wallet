@@ -59,7 +59,7 @@ function BottomNavigation() {
             />
           );
         },
-        tabBarActiveTintColor: Colors.btnColor,
+        tabBarActiveTintColor: Colors.white80,
         tabBarInactiveTintColor: Colors.gray100,
         tabBarLabelStyle: { fontSize: 12 },
         tabBarStyle: {
@@ -69,7 +69,7 @@ function BottomNavigation() {
           // borderTopLeftRadius: 20,
           // borderTopRightRadius: 20,
           position: 'absolute',
-          backgroundColor: Colors.white80,
+          backgroundColor: Colors.bgColor,
 
         },
       })}>

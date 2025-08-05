@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     fontWeight: Fonts.Weight.seven,
     fontFamily: Fonts.type.montserratRegular,
     
-    color: Colors.black100,
+    color: Colors.gray40,
   },
 
   containerMiddle: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   balance: {
     fontSize: Fonts.size.h1,
     fontWeight: '700',
-    color: Colors.blue100,
+    color: Colors.gray40,
   },
   subBalance: {
     fontSize: 14,
@@ -58,23 +58,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconWrapper: {
-    width: 50,
-    height: 50,
-    borderRadius: 12,
+    width: horizontalScale(50),
+    height: verticalScale(50),
+    borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 6,
   },
   label: {
-    color: Colors.gray100,
-    fontSize: 12,
+    color: Colors.gray40,
+    fontSize: Fonts.size.small,
+    fontWeight:Fonts.Weight.medium,
+    fontFamily:Fonts.type.montserratMedium
   },
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     borderBottomWidth: 1,
     paddingBottom: verticalScale(5),
-    borderColor: Colors.gray50,
+    borderColor: Colors.bgColor,
     position: 'relative',
     marginBottom: verticalScale(20),
   },
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
   },
   activeTab: {
     borderBottomWidth: 1,
-    borderColor: Colors.blue100,
+    borderColor: Colors.white80,
   },
   tabText: {
     fontSize: Fonts.size.uprSemi,
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   activeText: {
-    color: Colors.blue100,
+    color: Colors.white80,
   },
 });
 

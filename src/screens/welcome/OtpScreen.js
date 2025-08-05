@@ -47,7 +47,7 @@ export default function OtpScreen() {
     <Animatable.View
       animation="fadeIn"
       duration={800}
-      style={{ flex: 1, backgroundColor: Colors.background }}
+      style={{ flex: 1, backgroundColor: Colors.bgColor }}
     >
       {/* Top section */}
       <Animatable.View

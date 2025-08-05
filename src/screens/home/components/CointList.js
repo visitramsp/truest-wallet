@@ -32,6 +32,9 @@ const coinData = [
     balance: '1.3',
     value: '$280.10',
   },
+ 
+ 
+  
 ];
 
 const CoinCard = ({ coin, index, animationKey }) => (
@@ -42,7 +45,7 @@ const CoinCard = ({ coin, index, animationKey }) => (
       <View>
         <Text style={styles.name}>{coin.name}</Text>
         <View style={styles.row}>
-          <Text style={[styles.change, { color: coin.percentChange.includes('-') ? 'red' : 'green' }]}>
+          <Text style={[styles.change, { color: coin.percentChange.includes('-') ? 'red' : Colors.btnColor }]}>
             {coin.percentChange}
           </Text>
           <Text style={styles.earn}> • Earn {coin.earnRate}</Text>
@@ -65,12 +68,15 @@ const CointList = () => {
     }, [])
   );
   return (
+   
     <FlatList
       data={coinData}
       keyExtractor={item => item.id}
       renderItem={({ item, index }) => (
         <CoinCard coin={item} index={index} animationKey={animationKey} />
       )}
+       showsVerticalScrollIndicator={false}
+       contentContainerStyle={{ paddingBottom: 16 }}
     />
   );
 };
@@ -81,7 +87,7 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.gray50,
+    backgroundColor: Colors.black70,
     padding: 16,
     marginVertical: 4,
     marginHorizontal: 16,
@@ -102,7 +108,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   name: {
-    color: Colors.black100,
+    color: Colors.white80,
     fontSize: 16,
     fontWeight: '600',
   },
@@ -111,15 +117,15 @@ const styles = StyleSheet.create({
   },
   earn: {
     fontSize: 12,
-    color: Colors.blue80,
+    color: Colors.custombBlue100,
   },
   balance: {
-    color: Colors.black100,
+    color: Colors.white80,
     fontSize: 14,
     fontWeight: Fonts.Weight.medium,
   },
   value: {
-    color: '#000',
+    color: Colors.gray100,
     fontSize: 12,
   },
   row: {
