@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
 import Signup from '../screens/auth/Signup';
 import ForgetPassword from '../screens/auth/ForgetPassword';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Shop from '../screens/shop/Shop';
@@ -12,7 +12,7 @@ import Favorites from '../screens/favorites/Favorites';
 import Profile from '../screens/profile/Profile';
 import HomeScreen from '../screens/home/Home';
 import Cart from '../screens/cart/Cart';
-import { Colors } from '../theme';
+import {Colors} from '../theme';
 import Login from '../screens/auth/login';
 import WelcomeScreen from '../screens/welcome/WelcomeScreen';
 import ChooseOption from '../screens/welcome/ChooseOption';
@@ -33,9 +33,9 @@ const Stack = createNativeStackNavigator();
 function BottomNavigation() {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
+      screenOptions={({route}) => ({
         headerShown: false,
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
           if (route.name === 'Home') iconName = 'home';
@@ -61,7 +61,7 @@ function BottomNavigation() {
         },
         tabBarActiveTintColor: Colors.white80,
         tabBarInactiveTintColor: Colors.gray100,
-        tabBarLabelStyle: { fontSize: 12 },
+        tabBarLabelStyle: {fontSize: 12},
         tabBarStyle: {
           height: 70,
           paddingBottom: 10,
@@ -70,7 +70,6 @@ function BottomNavigation() {
           // borderTopRightRadius: 20,
           position: 'absolute',
           backgroundColor: Colors.bgColor,
-
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
@@ -86,10 +85,8 @@ function BottomNavigation() {
 export default function Index() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-
-
-
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="bottom-navigation" component={BottomNavigation} />
 
         <Stack.Screen name="welcome" component={WelcomeScreen} />
         <Stack.Screen
@@ -115,7 +112,6 @@ export default function Index() {
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="otp-screen" component={OtpScreen} />
         <Stack.Screen name="forget-password" component={ForgetPassword} />
-        <Stack.Screen name="bottom-navigation" component={BottomNavigation} />
 
         {/* bottom tab inner sub pages */}
         <Stack.Screen name="send" component={Send} />

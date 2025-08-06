@@ -30,16 +30,14 @@ const Colors = {
   // primarySecond: '#fda3dfff',
   pink90: '#fce1f3ff',
   // btnColor:"#a034f9ff",
-  btnColor:"#D6F736",
+  btnColor: '#D6F736',
   // btnColor:"#9827F5",
   // purple100:"#9827F5",
-  purple100:"#D6F736",
+  purple100: '#D6F736',
   // purple50:"#D7A1FF",
-  purple50:"#bdbbbbff",
+  purple50: '#bdbbbbff',
   // purple10:"#ebd8f8ff",
-  purple10:"gray",
-
-  
+  purple10: 'gray',
 };
 
 export default Colors;

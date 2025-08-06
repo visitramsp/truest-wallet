@@ -4,10 +4,13 @@ import {Text, View} from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import styles from './Welcome.Styles';
 import {useNavigation} from '@react-navigation/native';
-import {Colors} from '../../theme';
+import {Colors, horizontalScale, verticalScale} from '../../theme';
 import imageJson from '../../assets/startup.json';
 import LottieView from 'lottie-react-native';
 import * as Animatable from 'react-native-animatable';
+import {WebView} from 'react-native-webview';
+import waterImage from '../../assets/images/water.gif';
+
 export default function WelcomeSecondScreen() {
   const navigation = useNavigation();
 
@@ -15,13 +18,30 @@ export default function WelcomeSecondScreen() {
     <MainLayout>
       <View style={styles.container}>
         <View style={[styles.gifView, {}]}>
-          <View style={{height: 200}} />
-        
-         <Animatable.View animation="zoomIn" delay={300} duration={1500}>
+          <View style={{height: 300}} />
+          <View
+            style={{
+              flex: 1,
+              opacity: 0.3,
+              overflow: 'hidden',
+              opacity: 0.5,
+            }}>
+            <WebView
+              originWhitelist={['*']}
+              source={waterImage}
+              style={{
+                height: verticalScale(270),
+                width: horizontalScale(320),
+                opacity: 0.3,
+                borderRadius: 20,
+              }}
+            />
+          </View>
+          {/* <Animatable.View animation="zoomIn" delay={300} duration={1500}>
             <LottieView source={imageJson} autoPlay loop style={styles.gif} />
-          </Animatable.View>
+          </Animatable.View> */}
         </View>
-        <Animatable.View animation="slideInUp" delay={1000} duration={1000}>
+        <Animatable.View animation="slideInUp" delay={1000} duration={500}>
           <CustomButton
             onPress={() => navigation.navigate('otp-screen', {isFirst: true})}
             title="Create new wallet"

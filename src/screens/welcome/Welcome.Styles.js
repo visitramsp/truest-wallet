@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
   ApplicationStyle,
   Colors,
@@ -7,7 +7,7 @@ import {
   verticalScale,
   width,
 } from '../../theme';
-import { height } from '../../theme/Matrics';
+import {height} from '../../theme/Matrics';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     gap: verticalScale(50),
+    zIndex: 99,
+    backgroundColor: Colors.bgColor,
   },
   stepText: {
     color: Colors.gray40,
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
   gif: {
     width: width + 80,
     height: height - 500,
-    opacity:0.9
+    opacity: 0.9,
   },
   mainTitle: {
     textAlign: 'center',
@@ -41,7 +43,7 @@ const styles = StyleSheet.create({
     color: Colors.gray100,
     paddingHorizontal: horizontalScale(10),
     fontFamily: Fonts.type.montserratMedium,
-    textAlign: "center"
+    textAlign: 'center',
   },
 
   termsText: {
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingBottom: verticalScale(20),
   },
-  otpView: { marginTop: verticalScale(30) },
+  otpView: {marginTop: verticalScale(30)},
   resendView: {
     paddingVertical: verticalScale(30),
     justifyContent: 'center',
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     fontSize: Fonts.size.semi,
     fontWeight: Fonts.Weight.medium,
     fontFamily: Fonts.type.montserratMedium,
-    color:Colors.btnColor,
+    color: Colors.btnColor,
     borderRadius: 8,
     borderWidth: 1,
     borderBottomWidth: 1,
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
     fontSize: Fonts.size.f20,
     fontWeight: Fonts.Weight.low,
     paddingBottom: verticalScale(20),
-    fontFamily:Fonts.type.montserratMedium
+    fontFamily: Fonts.type.montserratMedium,
   },
 });
 

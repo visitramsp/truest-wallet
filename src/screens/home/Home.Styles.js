@@ -27,13 +27,14 @@ const styles = StyleSheet.create({
     fontSize: Fonts.size.regularLarge,
     fontWeight: Fonts.Weight.seven,
     fontFamily: Fonts.type.montserratRegular,
-    
+
     color: Colors.gray40,
   },
 
   containerMiddle: {
-    paddingBottom: 20,
-    alignItems: 'center',
+    padding: 20,
+
+    // alignItems: 'center',
   },
   balanceContainer: {
     marginBottom: 20,
@@ -46,30 +47,31 @@ const styles = StyleSheet.create({
   },
   subBalance: {
     fontSize: 14,
-    color: '#999',
+    color: Colors.btnColor,
     marginTop: 4,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: '40%',
+    width: '100%',
+    marginTop: 50,
   },
   buttonContainer: {
     alignItems: 'center',
   },
   iconWrapper: {
-    width: horizontalScale(50),
-    height: verticalScale(50),
+    width: 50,
+    height: 50,
     borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 6,
+    // marginBottom: 6,
   },
   label: {
     color: Colors.gray40,
     fontSize: Fonts.size.small,
-    fontWeight:Fonts.Weight.medium,
-    fontFamily:Fonts.type.montserratMedium
+    fontWeight: Fonts.Weight.medium,
+    fontFamily: Fonts.type.montserratMedium,
   },
   tabContainer: {
     flexDirection: 'row',
