@@ -22,18 +22,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: verticalScale(20),
     marginBottom: verticalScale(30),
+    marginTop:8
   },
   mainWalletText: {
     fontSize: Fonts.size.regularLarge,
-    fontWeight: Fonts.Weight.seven,
-    fontFamily: Fonts.type.montserratRegular,
+    fontWeight: Fonts.Weight.semi,
+    fontFamily: Fonts.type.montserratMedium,
 
-    color: Colors.gray40,
+    color: Colors.gray100,
   },
 
   containerMiddle: {
-    padding: 20,
-
+    padding: 16,
+    // borderBottomWidth:1,
+    // borderColor:Colors.gray100
     // alignItems: 'center',
   },
   balanceContainer: {
@@ -47,17 +49,20 @@ const styles = StyleSheet.create({
   },
   subBalance: {
     fontSize: 14,
-    color: Colors.btnColor,
+    // color: Colors.btnColor,
+    color: "#6df736ff",
     marginTop: 4,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-    marginTop: 50,
+    marginTop: 30,
   },
   buttonContainer: {
     alignItems: 'center',
+    flexDirection:"column",
+    gap:3
   },
   iconWrapper: {
     width: 50,
@@ -68,7 +73,7 @@ const styles = StyleSheet.create({
     // marginBottom: 6,
   },
   label: {
-    color: Colors.gray40,
+    color: Colors.gray100,
     fontSize: Fonts.size.small,
     fontWeight: Fonts.Weight.medium,
     fontFamily: Fonts.type.montserratMedium,
@@ -87,7 +92,7 @@ const styles = StyleSheet.create({
 
     position: 'relative',
     top: 5,
-    width: width - horizontalScale(220),
+    width:  horizontalScale(70),
   },
   activeTab: {
     borderBottomWidth: 1,

@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { Colors, Fonts } from '../../theme';
 import * as Animatable from 'react-native-animatable';
 import { useFocusEffect } from '@react-navigation/native';
+import MainLayout from '../../components/layout/Layout';
 const settingsItems = [
   {
     title: 'General',
@@ -44,21 +45,21 @@ export default function Settings() {
     }, [])
   );
   return (
-    <View style={styles.container}>
+    <MainLayout style={styles.container}>
       <Text style={styles.header}>Settings</Text>
 
       <View style={styles.listContainer} showsVerticalScrollIndicator={false}>
         {settingsItems.map((item, index) => (
-          <Animatable.View  key={`${animationKey}-${index}`}  animation={index % 2 === 0 ? 'slideInLeft' : 'slideInRight'} delay={200 + index * 200} duration={1000}  style={styles.item}>
+          <View  key={`${animationKey}-${index}`}    style={styles.item}>
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.title}</Text>
               <Text style={styles.subtitle}>{item.subtitle}</Text>
             </View>
             <Icon name="chevron-right" size={22} color="#ccc" />
-          </Animatable.View>
+          </View>
         ))}
       </View>
-    </View>
+    </MainLayout>
   );
 }
 
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.bgColor,
     paddingHorizontal: 20,
-    paddingTop: 50,
+    paddingTop: 20,
   },
   header: {
     fontSize: Fonts.size.f22,

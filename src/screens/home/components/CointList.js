@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {View, Text, Image, FlatList, StyleSheet} from 'react-native';
-import {mediaFile} from '../../../assets';
-import {Colors, Fonts} from '../../../theme';
+import React, { useState } from 'react';
+import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
+import { mediaFile } from '../../../assets';
+import { Colors, Fonts } from '../../../theme';
 import * as Animatable from 'react-native-animatable';
-import {useFocusEffect} from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 const coinData = [
   {
     id: '1',
@@ -32,9 +32,31 @@ const coinData = [
     balance: '1.3',
     value: '$280.10',
   },
+  {
+    id: '4',
+    name: 'Floki',
+    icon: mediaFile.floki,
+    percentChange: '-0.24%',
+    earnRate: '4.5%',
+    balance: '1.3',
+    value: '$280.10',
+  },
+  {
+    id: '5',
+    name: 'Bonk',
+    icon: mediaFile.bonk,
+    percentChange: '-0.24%',
+    earnRate: '4.5%',
+    balance: '1.3',
+    value: '$280.10',
+  },
+
+
 ];
 
-const CoinCard = ({coin, index, animationKey}) => (
+// floki,
+//   bonk
+const CoinCard = ({ coin, index, animationKey }) => (
   <View style={styles.card}>
     <View style={styles.left}>
       <Image source={coin.icon} style={styles.icon} />
@@ -77,11 +99,11 @@ const CointList = () => {
     <FlatList
       data={coinData}
       keyExtractor={item => item.id}
-      renderItem={({item, index}) => (
+      renderItem={({ item, index }) => (
         <CoinCard coin={item} index={index} animationKey={animationKey} />
       )}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{paddingBottom: 16}}
+      contentContainerStyle={{ paddingBottom: 16, zIndex: 999 }}
     />
   );
 };
@@ -99,6 +121,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: 'center',
     borderRadius: 10,
+    // opacity:0.5
+
   },
   left: {
     flexDirection: 'row',

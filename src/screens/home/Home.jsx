@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,35 +8,37 @@ import {
   Image,
 } from 'react-native';
 import styles from './Home.Styles';
-import {Colors, verticalScale} from '../../theme';
+import { Colors, verticalScale } from '../../theme';
 import CointList from './components/CointList';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Icon from 'react-native-vector-icons/Feather';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import lineChart from '../../assets/images/lineChart.png';
+import lineChar2 from '../../assets/images/lineChart32.png';
+import MainLayout from '../../components/layout/Layout';
 const buttons = [
-  {label: 'Send', iconTag: Icon, icon: 'arrow-up', bg: '#D6F736', link: 'send'},
+  { label: 'Send', iconTag: Icon, icon: 'arrow-up', bg: Colors.btnColor, link: 'send' },
   {
     label: 'Receive',
     iconTag: Icon,
     icon: 'arrow-down',
-    bg: '#D6F736',
+    bg: Colors.btnColor,
     link: 'receive',
   },
   {
     label: 'History',
     iconTag: MaterialIcons,
     icon: 'history',
-    bg: '#D6F736',
+    bg: Colors.btnColor,
     link: null,
   },
   {
     label: 'More',
     iconTag: MaterialIcons,
     icon: 'dashboard-customize',
-    bg: '#D6F736',
+    bg: Colors.btnColor,
     link: null,
   },
 ];
@@ -62,22 +64,23 @@ export default function HomeScreen() {
         translucent
         barStyle="dark-content"
       />
-      <SafeAreaView style={styles.container}>
-        <View>
+    
+      <MainLayout scrollable={true}  style={{paddingBottom:90}} >
+        <View> 
           <View style={styles.topContainer}>
             <MaterialIcons
               name={'qr-code-scanner'}
               size={25}
               color={Colors.gray70}
             />
-            <View style={{flexDirection: 'row', alignItems: 'center', gap: 15}}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
               <Fontisto name={'world-o'} size={22} color={Colors.btnColor} />
-              <Octicons name={'filter'} size={20} color={Colors.gray40} />
+              {/* <Octicons name={'filter'} size={20} color={Colors.gray40} /> */}
             </View>
           </View>
           <View
             style={{
-              paddingTop: 20,
+              // paddingTop: 15,
               flexDirection: 'row',
               alignItems: 'center',
               gap: 15,
@@ -85,8 +88,11 @@ export default function HomeScreen() {
             }}>
             <Fontisto name={'wallet'} size={22} color={'#6df736ff'} />
 
-            <Text style={styles.mainWalletText}>Main Wallet</Text>
-            <View style={{marginTop: 5}}>
+            
+            <View style={{ marginTop: 4,flexDirection: 'row',
+              alignItems: 'center',
+              gap: 5, }}>
+              <Text style={styles.mainWalletText}>Main Wallet</Text>
               <MaterialIcons
                 name={'keyboard-arrow-down'}
                 size={29}
@@ -106,7 +112,7 @@ export default function HomeScreen() {
                 <Text style={styles.balance}>$0.00</Text>
                 <Text style={styles.subBalance}>+$0.00 (0%)</Text>
               </View>
-              <Image source={lineChart} style={{height: 120, width: 150}} />
+              <Image source={lineChar2} style={{ width: 180, height: 100, opacity: 0.3 }} />
             </View>
 
             <View style={styles.row}>
@@ -115,7 +121,7 @@ export default function HomeScreen() {
                   onPress={() => btn.link && navigation.navigate(btn.link)}
                   key={index}
                   style={styles.buttonContainer}>
-                  <View style={[styles.iconWrapper, {backgroundColor: btn.bg}]}>
+                  <View style={[styles.iconWrapper, { backgroundColor: btn.bg }]}>
                     <btn.iconTag
                       name={btn.icon}
                       size={22}
@@ -131,7 +137,7 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.tabContainer}>
-            {['Coins', 'Activity'].map((row, index) => (
+            {['Coins',"DeFi", 'Activity'].map((row, index) => (
               <TouchableOpacity onPress={() => handleTabPress(index)}>
                 <View
                   key={index}
@@ -165,7 +171,8 @@ export default function HomeScreen() {
             </Text>
           )}
         </View>
-      </SafeAreaView>
+      </MainLayout>
+ 
     </>
   );
 }

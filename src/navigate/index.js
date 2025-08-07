@@ -30,57 +30,120 @@ import Congratulation from '../screens/congratulation/Congratulation';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
+
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+const CustomTabBarButton = ({children, onPress, accessibilityState}) => {
+  const focused = accessibilityState?.selected;
+
+  console.log(focused,"focusedr");
+  
+  return (
+    <TouchableOpacity
+      style={styles.tradeButtonContainer}
+      onPress={onPress}
+      activeOpacity={0.8}>
+      <View style={styles.tradeButton}>
+        {children}
+      </View>
+      <Text
+        style={{
+          color: focused ? '#FFFFFF' : Colors.gray100,
+          fontSize: 12,
+          marginTop: 4,
+        }}>
+        Trade
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
+
 function BottomNavigation() {
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
+      screenOptions={{
         headerShown: false,
-        tabBarIcon: ({focused, color, size}) => {
-          let iconName;
-
-          if (route.name === 'Home') iconName = 'home';
-          else if (route.name === 'Shop') iconName = 'shopping-cart';
-          else if (route.name === 'Bag') iconName = 'shopping-bag';
-          else if (route.name === 'Favorites') iconName = 'heart';
-          else if (route.name === 'Profile') iconName = 'user';
-          else if (route.name === 'Setting') iconName = 'settings';
-
-          return route.name === 'Home' || route.name === 'Setting' ? (
+        tabBarShowLabel: true,
+        tabBarStyle: styles.tabBar,
+        tabBarLabelStyle: styles.labelStyle,
+        tabBarActiveTintColor: '#FFFFFF',
+      }}>
+      
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
             <MaterialIcons
-              name={iconName}
-              size={30}
-              color={focused ? Colors.btnColor : Colors.gray100}
-            />
-          ) : (
-            <Icon
-              name={iconName}
+              name="home"
               size={24}
               color={focused ? Colors.btnColor : Colors.gray100}
             />
-          );
-        },
-        tabBarActiveTintColor: Colors.white80,
-        tabBarInactiveTintColor: Colors.gray100,
-        tabBarLabelStyle: {fontSize: 12},
-        tabBarStyle: {
-          height: 70,
-          paddingBottom: 10,
-          paddingTop: 5,
-          // borderTopLeftRadius: 20,
-          // borderTopRightRadius: 20,
-          position: 'absolute',
-          backgroundColor: Colors.bgColor,
-        },
-      })}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      {/* <Tab.Screen name="Shop" component={Shop} />
-      <Tab.Screen name="Bag" component={Cart} />
-      <Tab.Screen name="Favorites" component={Favorites} />
-      <Tab.Screen name="Profile" component={Profile} /> */}
-      <Tab.Screen name="Setting" component={Setting} />
+          ),
+        }}
+      />
+      
+      <Tab.Screen
+        name="Accounts"
+        component={Shop}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <Icon
+              name="credit-card"
+              size={20}
+              color={focused ? Colors.btnColor : Colors.gray100}
+            />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Trade"
+
+        component={Cart}
+        options={{
+          tabBarLabel: () => null,
+          tabBarIcon: ({focused}) => (
+            <MaterialIcons name="compare-arrows" size={30} color={Colors.bgColor} />
+          ),
+          tabBarButton: props => <CustomTabBarButton {...props} />,
+        }}
+      />
+
+      <Tab.Screen
+        name="Track"
+        component={Favorites}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <MaterialIcons
+              name="insights"
+              size={22}
+              color={focused ? Colors.btnColor : Colors.gray100}
+            />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Settings"
+        component={Setting}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <MaterialIcons
+              name="settings"
+              size={22}
+              color={focused ? Colors.btnColor : Colors.gray100}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
+
+
+
 
 export default function Index() {
   return (
@@ -121,3 +184,40 @@ export default function Index() {
     </NavigationContainer>
   );
 }
+
+
+const styles = StyleSheet.create({
+  tabBar: {
+    backgroundColor: Colors.bgColor,
+    height: 70,
+    position: 'absolute',
+    paddingBottom: 10,
+    paddingTop: 5,
+    marginHorizontal:20,
+    marginBottom:5,
+    borderRadius:15,
+    borderWidth:1,
+    borderColor:Colors.gray90
+  },
+  labelStyle: {
+    fontSize: 11,
+    marginBottom: 2,
+  },
+  tradeButtonContainer: {
+    top: -20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tradeButton: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: Colors.btnColor,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowOffset: {width: 0, height: 3},
+  },
+});
